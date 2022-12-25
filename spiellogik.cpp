@@ -25,7 +25,6 @@ void Spiellogik::place_chip_user(){
 void Spiellogik::place_chip_random(){
 
     int column_random = GetRandomNumberBetween(1,5);
-
     for(int i = 0; i<5; i++){
         if(field.game_field[column_random-1][i] == NULL ){
             field.game_field[column_random-1][i] = 'X';
