@@ -36,27 +36,49 @@ void Spiellogik::place_chip_random(){
 }
 
 int Spiellogik::win_lose(int columns, int lines){
-    int count1_Me = 0;
-    int count2_Enemy = 0;
-  for (int i = 0; i < lines; ++i){
-    for (int j = 0; j < columns; ++j){
-      //Waagrecht
-      if(field.game_field[j][i] == 'O'){
-        count1_Me++;
-        count2_Enemy = 0;
-        if(count1_Me == 4){
-        return 1;
+
+//waagrecht
+    for (int i = 0; i < lines; i++){
+        int count1_Me = 0;
+        int count2_Enemy = 0;
+        for (int j = 0; j < columns; j++){
+            if(field.game_field[j][i] == 'O'){
+                count1_Me++;
+                count2_Enemy = 0;
+            } 
+            if(field.game_field[j][i] == 'X'){
+                count2_Enemy++;
+                count1_Me = 0;
+            }
+            if(count1_Me == 4){
+                return 1;
+            }
+            if(count2_Enemy==4){
+                return 2;
+            }
         }
-      }
-      if(field.game_field[j][i] == 'X'){
-        count2_Enemy++;
-        count1_Me = 0;
-        if(count2_Enemy==4){
-        return 2;
-        }
-      }
     }
-  }
+//senkrecht
+    for (int j = 0; j < columns; j++){
+        int count1_Me = 0;
+        int count2_Enemy = 0;
+        for (int i = 0; i < lines; i++){
+            if(field.game_field[j][i] == 'O'){
+                count1_Me++;
+                count2_Enemy = 0;
+            }
+            if(field.game_field[j][i] == 'X'){
+                count2_Enemy++;
+                count1_Me = 0;
+            }
+            if(count1_Me == 4){
+                return 1;
+            }
+            if(count2_Enemy== 4){
+                return 2;
+            }
+        }
+    }
 return 0;
 }
 
