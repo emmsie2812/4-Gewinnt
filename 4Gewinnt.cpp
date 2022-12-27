@@ -22,7 +22,7 @@ int main(){
 
     while(time){ 
         std::cout<<"Your Turn:";
-        spiellogik->place_chip_user();
+        spiellogik->place_chip_user(5,5);
         spiellogik->field.field_output(5,5);
         int winlose = spiellogik->win_lose(5,5,4);
         //4 steht fuer wie viele Coins du brauchst um zu gewinnen, abgepasst um deine Level einfacher zu gestalten
@@ -31,7 +31,7 @@ int main(){
         }
         std::cout<<"Enemy Turn: \n";
         sleep(1);
-        spiellogik->place_chip_random();
+        spiellogik->place_chip_random(5,5);
         spiellogik->field.field_output(5,5);
         winlose = spiellogik->win_lose(5,5,4);
         if(end_game(winlose)){

@@ -9,10 +9,25 @@ Spiellogik::Spiellogik(Field &game_field){
     field = game_field;
 }
 
-void Spiellogik::place_chip_user(){
-    std::cin >> user_input; 
+bool Spiellogik::full_gamefield_errormessage(int columns, int lines){
+    if(field.game_field[columns][lines]){
+        std::cout << "Spalte ist voll";
+        return false;
+    }
+    return true;
+}
 
-    for(int i = 0; i<5; i++){
+void Spiellogik::place_chip_user(int columns, int lines){
+
+    bool input = false;
+    int user_input;
+
+    while(!input){
+        std::cin >> user_input; 
+        input = full_gamefield_errormessage(columns,lines);
+    }
+
+    for(int i = 0; i<lines; i++){
         if(field.game_field[user_input-1][i] == NULL ){
             field.game_field[user_input-1][i] = 'O';
             break;
@@ -22,10 +37,17 @@ void Spiellogik::place_chip_user(){
     }
 }
 
-void Spiellogik::place_chip_random(){
+void Spiellogik::place_chip_random(int columns, int lines){
 
-    int column_random = GetRandomNumberBetween(1,5);
-    for(int i = 0; i<5; i++){
+    int column_random;
+
+    bool input = false;
+    while(!input){
+        column_random = GetRandomNumberBetween(1,5);
+        input = full_gamefield_errormessage(columns,lines);
+    }
+
+    for(int i = 0; i<lines; i++){
         if(field.game_field[column_random-1][i] == NULL ){
             field.game_field[column_random-1][i] = 'X';
             break;
