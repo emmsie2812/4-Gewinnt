@@ -79,6 +79,30 @@ int Spiellogik::win_lose(int columns, int lines){
             }
         }
     }
+//diagonal left-bottom to right-top
+for(int i=0; i<lines+1; i++){
+    for (int j=0; j<columns+1; j++){
+        if(field.game_field[j][i] == 'O' && field.game_field[j+1][i+1] == 'O' && field.game_field[j+2][i+2] == 'O' && field.game_field[j+3][i+3] == 'O'){
+            return 1;
+        }
+        if(field.game_field[j][i] == 'X' && field.game_field[j+1][i+1] == 'X' && field.game_field[j+2][i+2] == 'X' && field.game_field[j+3][i+3] == 'X'){
+            return 2;
+        }
+    }
+}
+
+//diagonal left-top to right-bottom
+for(int i=0; i<lines+1; i++){
+    for (int j=0; j<columns+1; j++){
+        if(field.game_field[j][i] == 'O' && field.game_field[j-1][i+1] == 'O' && field.game_field[j-2][i+2] == 'O' && field.game_field[j-3][i+3] == 'O'){
+            return 1;
+        }
+        if(field.game_field[j][i] == 'X' && field.game_field[j-1][i+1] == 'X' && field.game_field[j-2][i+2] == 'X' && field.game_field[j-3][i+3] == 'X'){
+            return 2;
+        }
+    }
+}
+
 return 0;
 }
 
