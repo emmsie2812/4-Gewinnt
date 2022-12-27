@@ -10,12 +10,12 @@ Field::Field(){}
 //Feld empty ist für das zurück setzen für erreichen eines neuen Levels
 //Du kannst hier Variablen als Parameter eingeben die das Feld jeweils vergrößern oder so
 void Field::field_output(int columns, int lines){ 
-    std::cout << "| 1 | 2 | 3 | 4 | 5 |\n";
-    std::cout << "---------------------\n";
+    std::cout << "| 1  | 2  | 3  | 4  | 5  |\n";
+    std::cout << "___________________________\n";
 
     for (int i = lines-1; i >= 0; i--)
     {
-        std::cout << "| ";
+        std::cout << "|  ";
 
         for (int j = 0; j < columns; j++)
         {
@@ -27,12 +27,12 @@ void Field::field_output(int columns, int lines){
             if(game_field[j][i] == 'X'){
                 color = RED;
             }
-            std::cout << color << game_field[j][i] << RESET " | ";
+            std::cout << color << game_field[j][i] << RESET "  |  ";
         }
 
         std::cout << "\b\n"; 
 
-        std::cout << "---------------------\n";
+        std::cout << "___________________________\n";
     }
 }
 

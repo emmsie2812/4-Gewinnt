@@ -35,7 +35,7 @@ void Spiellogik::place_chip_random(){
     }
 }
 
-int Spiellogik::win_lose(int columns, int lines){
+int Spiellogik::win_lose(int columns, int lines,int win_coins){
 
 //waagrecht
     for (int i = 0; i < lines; i++){
@@ -50,10 +50,10 @@ int Spiellogik::win_lose(int columns, int lines){
                 count2_Enemy++;
                 count1_Me = 0;
             }
-            if(count1_Me == 4){
+            if(count1_Me == win_coins){
                 return 1;
             }
-            if(count2_Enemy==4){
+            if(count2_Enemy==win_coins){
                 return 2;
             }
         }
@@ -71,10 +71,10 @@ int Spiellogik::win_lose(int columns, int lines){
                 count2_Enemy++;
                 count1_Me = 0;
             }
-            if(count1_Me == 4){
+            if(count1_Me == win_coins){
                 return 1;
             }
-            if(count2_Enemy== 4){
+            if(count2_Enemy== win_coins){
                 return 2;
             }
         }

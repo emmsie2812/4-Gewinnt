@@ -10,7 +10,7 @@ class Spiellogik{
     public:
         void place_chip_user();
         void place_chip_random();
-        int win_lose(int columns, int lines);
+        int win_lose(int columns, int lines, int win_coins);
         Field field;
         Spiellogik();
         Spiellogik(Field &game_field);
