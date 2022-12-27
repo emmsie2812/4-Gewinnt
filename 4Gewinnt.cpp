@@ -8,7 +8,7 @@ int main(){
     Spiellogik *spiellogik = new Spiellogik(*game_field);
     bool time = true;
 
-    spiellogik->field.field_output(5,6);//einmal anzeigen um zu sehen wie das spielfeld aussieht
+    spiellogik->field.field_output(5,5);//einmal anzeigen um zu sehen wie das spielfeld aussieht
 
     //fieldoutput und win_lose haben die columns und lines als Input damit kannst du deine if abfragen steuern das 
     //if level 3 erreicht fieldoutput 6,6 als beispiel damit du den Sinn der Inputs verstehst :)
