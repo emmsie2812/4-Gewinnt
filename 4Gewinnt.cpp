@@ -43,12 +43,30 @@ int main(){
 
 bool end_game(int winlose){
         if(winlose == 1){
-            std::cout << "You Win\n";
+            std::cout << "You Win Horizontal\n";
             //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
         }
         if(winlose == 2){
-            std::cout << "You Lose\n";
+            std::cout << "You Lose Horizontal\n";
+            return true;
+        }
+        if(winlose == 3){
+            std::cout << "You Win Vertical\n";
+            //hier kannst du was einfuegen um zum naechsten Level zu gelangen
+            return true;
+        }
+        if(winlose == 4){
+            std::cout << "You Lose Vertical \n";
+            return true;
+        }
+        if(winlose == 5){
+            std::cout << "You Win Diagonal \n";
+            //hier kannst du was einfuegen um zum naechsten Level zu gelangen
+            return true;
+        }
+        if(winlose == 6){
+            std::cout << "You Lose Diagonal \n";
             return true;
         }
         return false;

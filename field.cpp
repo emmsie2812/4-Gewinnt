@@ -10,8 +10,9 @@ Field::Field(){}
 //Feld empty ist für das zurück setzen für erreichen eines neuen Levels
 //Du kannst hier Variablen als Parameter eingeben die das Feld jeweils vergrößern oder so
 void Field::field_output(int columns, int lines){ 
+
     std::cout << "| 1  | 2  | 3  | 4  | 5  |\n";
-    std::cout << "___________________________\n";
+    std::cout << "_______________________________\n";
 
     for (int i = lines-1; i >= 0; i--)
     {
@@ -32,7 +33,7 @@ void Field::field_output(int columns, int lines){
 
         std::cout << "\b\n"; 
 
-        std::cout << "___________________________\n";
+        std::cout << "_______________________________\n";
     }
 }
 

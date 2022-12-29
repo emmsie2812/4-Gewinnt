@@ -9,23 +9,25 @@ Spiellogik::Spiellogik(Field &game_field){
     field = game_field;
 }
 
-bool Spiellogik::full_gamefield_errormessage(int columns, int lines){
-    if(field.game_field[columns][lines]){
-        std::cout << "Spalte ist voll";
+bool Spiellogik:: invalid_input(int columns, int lines, int user_input){
+
+    if(user_input > columns || user_input == 0 || field.game_field[user_input-1][lines-1] == 'O'|| field.game_field[user_input-1][lines-1] == 'X'){
+        std::cout << "Invalid Input, Please Try Again: ";
         return false;
-    }
+    } 
     return true;
 }
 
 void Spiellogik::place_chip_user(int columns, int lines){
 
-    bool input = false;
+    bool valid_input = false;
     int user_input;
 
-    while(!input){
-        std::cin >> user_input; 
-        input = full_gamefield_errormessage(columns,lines);
+    while(!valid_input){
+        std::cin >> user_input;
+        valid_input = invalid_input(columns,lines, user_input);
     }
+
 
     for(int i = 0; i<lines; i++){
         if(field.game_field[user_input-1][i] == NULL ){
@@ -40,11 +42,11 @@ void Spiellogik::place_chip_user(int columns, int lines){
 void Spiellogik::place_chip_random(int columns, int lines){
 
     int column_random;
+    bool valid_input = false;
 
-    bool input = false;
-    while(!input){
+    while(!valid_input){
         column_random = GetRandomNumberBetween(1,5);
-        input = full_gamefield_errormessage(columns,lines);
+        valid_input = invalid_input(columns,lines, column_random);
     }
 
     for(int i = 0; i<lines; i++){
@@ -57,8 +59,7 @@ void Spiellogik::place_chip_random(int columns, int lines){
     }
 }
 
-int Spiellogik::win_lose(int columns, int lines,int win_coins){
-
+int Spiellogik:: horizontal_win_lose(int columns, int lines,int win_coins){
 //waagrecht
     for (int i = 0; i < lines; i++){
         int count1_Me = 0;
@@ -80,7 +81,11 @@ int Spiellogik::win_lose(int columns, int lines,int win_coins){
             }
         }
     }
-//senkrecht
+    return 0;
+}
+
+int Spiellogik:: vertical_win_lose(int columns, int lines,int win_coins){
+    //senkrecht
     for (int j = 0; j < columns; j++){
         int count1_Me = 0;
         int count2_Enemy = 0;
@@ -94,36 +99,48 @@ int Spiellogik::win_lose(int columns, int lines,int win_coins){
                 count1_Me = 0;
             }
             if(count1_Me == win_coins){
-                return 1;
+                return 3;
             }
             if(count2_Enemy== win_coins){
-                return 2;
+                return 4;
             }
         }
     }
-//diagonal left-bottom to right-top
-for(int i=0; i<lines+1; i++){
-    for (int j=0; j<columns+1; j++){
-        if(field.game_field[j][i] == 'O' && field.game_field[j+1][i+1] == 'O' && field.game_field[j+2][i+2] == 'O' && field.game_field[j+3][i+3] == 'O'){
-            return 1;
-        }
-        if(field.game_field[j][i] == 'X' && field.game_field[j+1][i+1] == 'X' && field.game_field[j+2][i+2] == 'X' && field.game_field[j+3][i+3] == 'X'){
-            return 2;
-        }
-    }
+    return 0;
 }
 
-//diagonal left-top to right-bottom
-for(int i=0; i<lines+1; i++){
-    for (int j=0; j<columns+1; j++){
-        if(field.game_field[j][i] == 'O' && field.game_field[j-1][i+1] == 'O' && field.game_field[j-2][i+2] == 'O' && field.game_field[j-3][i+3] == 'O'){
-            return 1;
-        }
-        if(field.game_field[j][i] == 'X' && field.game_field[j-1][i+1] == 'X' && field.game_field[j-2][i+2] == 'X' && field.game_field[j-3][i+3] == 'X'){
-            return 2;
+int Spiellogik:: diagonal_win_lose(int columns, int lines,int win_coins){
+    //diagonal left-top to right-bottom
+    for(int i=0; i<lines+1; i++){
+        for (int j=0; j<columns+1; j++){
+            if(field.game_field[j][i] == 'O' && field.game_field[j-1][i+1] == 'O' && field.game_field[j-2][i+2] == 'O' && field.game_field[j-3][i+3] == 'O'){
+                return 5;
+            }
+            if(field.game_field[j][i] == 'X' && field.game_field[j-1][i+1] == 'X' && field.game_field[j-2][i+2] == 'X' && field.game_field[j-3][i+3] == 'X'){
+                return 6;
+            }
         }
     }
+
+    //diagonal left-bottom to right-top
+    for(int i=0; i<lines+1; i++){
+        for (int j=0; j<columns+1; j++){
+            if(field.game_field[j][i] == 'O' && field.game_field[j+1][i+1] == 'O' && field.game_field[j+2][i+2] == 'O' && field.game_field[j+3][i+3] == 'O'){
+                return 5;
+            }
+            if(field.game_field[j][i] == 'X' && field.game_field[j+1][i+1] == 'X' && field.game_field[j+2][i+2] == 'X' && field.game_field[j+3][i+3] == 'X'){
+                return 6;
+            }
+        }
+    }
+
+    return 0;
 }
-return 0;
+
+int Spiellogik::win_lose(int columns, int lines,int win_coins){
+    return horizontal_win_lose(columns,lines,win_coins);
+    return vertical_win_lose(columns,lines, win_coins);
+    return diagonal_win_lose(columns,lines, win_coins);
+    return 0;
 }
 
