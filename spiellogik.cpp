@@ -126,10 +126,10 @@ int Spiellogik:: diagonal_win_lose(int columns, int lines,int win_coins){
     for(int i=0; i<lines+1; i++){
         for (int j=0; j<columns+1; j++){
             if(field.game_field[j][i] == 'O' && field.game_field[j+1][i+1] == 'O' && field.game_field[j+2][i+2] == 'O' && field.game_field[j+3][i+3] == 'O'){
-                return 5;
+                return 7;
             }
             if(field.game_field[j][i] == 'X' && field.game_field[j+1][i+1] == 'X' && field.game_field[j+2][i+2] == 'X' && field.game_field[j+3][i+3] == 'X'){
-                return 6;
+                return 8;
             }
         }
     }
@@ -138,9 +138,18 @@ int Spiellogik:: diagonal_win_lose(int columns, int lines,int win_coins){
 }
 
 int Spiellogik::win_lose(int columns, int lines,int win_coins){
-    return horizontal_win_lose(columns,lines,win_coins);
-    return vertical_win_lose(columns,lines, win_coins);
-    return diagonal_win_lose(columns,lines, win_coins);
-    return 0;
+    int win = 0;
+
+    int horizontal_win = horizontal_win_lose(columns,lines,win_coins);
+    int vertical_win = vertical_win_lose(columns,lines, win_coins);
+    int diagonal_win = diagonal_win_lose(columns,lines, win_coins);
+    if(horizontal_win != 0){
+        win = horizontal_win;
+    }else if(vertical_win != 0){
+        win = vertical_win;
+    }else if(diagonal_win != 0){
+        win = diagonal_win;
+    }
+    return win;
 }
 

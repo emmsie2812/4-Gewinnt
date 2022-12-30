@@ -3,8 +3,7 @@
 #include <unistd.h>
 #include <chrono>
 
-//kein User input solange random dran
-// wenn feld voll anzeigen das in ein anderes feld platzieren
+//strings eingabe verhindern --> fuck you schreiben wenn string eingeben
 
 
 bool end_game(int winlose);
@@ -42,32 +41,42 @@ int main(){
 }
 
 bool end_game(int winlose){
-        if(winlose == 1){
+
+        switch (winlose)
+        {
+        case 1:
             std::cout << "You Win Horizontal\n";
             //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
-        }
-        if(winlose == 2){
+            break;
+        case 2:
             std::cout << "You Lose Horizontal\n";
+            //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
-        }
-        if(winlose == 3){
+            break;
+        case 3:
             std::cout << "You Win Vertical\n";
             //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
-        }
-        if(winlose == 4){
+            break;
+        case 4:
             std::cout << "You Lose Vertical \n";
+            //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
-        }
-        if(winlose == 5){
+            break;
+        case 5:
             std::cout << "You Win Diagonal \n";
             //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
-        }
-        if(winlose == 6){
+            break;
+        case 6:
             std::cout << "You Lose Diagonal \n";
+            //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
+            break;
+        
+        default:
+            return false;
+            break;
         }
-        return false;
 }
