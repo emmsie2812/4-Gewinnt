@@ -113,11 +113,24 @@ int Spiellogik:: diagonal_win_lose(int columns, int lines,int win_coins){
     //diagonal left-top to right-bottom
     for(int i=0; i<lines+1; i++){
         for (int j=0; j<columns+1; j++){
-            if(field.game_field[j][i] == 'O' && field.game_field[j-1][i+1] == 'O' && field.game_field[j-2][i+2] == 'O' && field.game_field[j-3][i+3] == 'O'){
-                return 5;
-            }
-            if(field.game_field[j][i] == 'X' && field.game_field[j-1][i+1] == 'X' && field.game_field[j-2][i+2] == 'X' && field.game_field[j-3][i+3] == 'X'){
-                return 6;
+            int count1_Me = 0;
+            int count2_Enemy = 0;
+            for (int coins = 0; coins < win_coins; coins++)
+            {
+                if(field.game_field[j-coins][i+coins] == 'O'){
+                    count1_Me++;
+                    count2_Enemy = 0;
+                }
+                if(field.game_field[j-coins][i+coins] == 'X'){
+                    count2_Enemy++;
+                    count1_Me = 0;
+                }
+                if(count1_Me == win_coins){
+                    return 5;
+                }
+                if(count2_Enemy== win_coins){
+                    return 6;
+                }
             }
         }
     }
@@ -125,15 +138,27 @@ int Spiellogik:: diagonal_win_lose(int columns, int lines,int win_coins){
     //diagonal left-bottom to right-top
     for(int i=0; i<lines+1; i++){
         for (int j=0; j<columns+1; j++){
-            if(field.game_field[j][i] == 'O' && field.game_field[j+1][i+1] == 'O' && field.game_field[j+2][i+2] == 'O' && field.game_field[j+3][i+3] == 'O'){
-                return 7;
-            }
-            if(field.game_field[j][i] == 'X' && field.game_field[j+1][i+1] == 'X' && field.game_field[j+2][i+2] == 'X' && field.game_field[j+3][i+3] == 'X'){
-                return 8;
+            int count1_Me = 0;
+            int count2_Enemy = 0;
+            for (int coins = 0; coins < win_coins; coins++)
+            {
+                if(field.game_field[j+coins][i+coins] == 'O'){
+                    count1_Me++;
+                    count2_Enemy = 0;
+                }
+                if(field.game_field[j+coins][i+coins] == 'X'){
+                    count2_Enemy++;
+                    count1_Me = 0;
+                }
+                if(count1_Me == win_coins){
+                    return 5;
+                }
+                if(count2_Enemy== win_coins){
+                    return 6;
+                }
             }
         }
     }
-
     return 0;
 }
 

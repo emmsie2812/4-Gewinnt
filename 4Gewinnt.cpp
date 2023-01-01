@@ -4,6 +4,7 @@
 #include <chrono>
 
 //strings eingabe verhindern --> fuck you schreiben wenn string eingeben
+//Win Coins eingabe bei diagonal
 
 
 bool end_game(int winlose);
@@ -73,8 +74,7 @@ bool end_game(int winlose){
             std::cout << "You Lose Diagonal \n";
             //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
-            break;
-        
+            break;       
         default:
             return false;
             break;
