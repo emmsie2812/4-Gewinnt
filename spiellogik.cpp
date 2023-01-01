@@ -10,9 +10,10 @@ Spiellogik::Spiellogik(Field &game_field){
 }
 
 bool Spiellogik:: invalid_input(int columns, int lines, int user_input){
-
-    if(user_input > columns || user_input == 0 || field.game_field[user_input-1][lines-1] == 'O'|| field.game_field[user_input-1][lines-1] == 'X'){
-        std::cout << "Invalid Input, Please Try Again: ";
+    if(user_input > columns || user_input == 0 || field.game_field[user_input-1][lines-1] == 'O'|| field.game_field[user_input-1][lines-1] == 'X'|| !user_input){
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << user_input <<" is a Invalid Input, Please Try Again: ";
         return false;
     } 
     return true;

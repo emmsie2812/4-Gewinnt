@@ -1,6 +1,7 @@
 #pragma once
 #include "field.hpp"
 #include <iostream>
+#include<limits>
 
 class Spiellogik{
 
