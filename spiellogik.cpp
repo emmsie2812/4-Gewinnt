@@ -58,6 +58,8 @@ void Spiellogik::place_chip_random(int columns, int lines){
             continue;
         }
     }
+
+    
 }
 
 int Spiellogik:: horizontal_win_lose(int columns, int lines,int win_coins){

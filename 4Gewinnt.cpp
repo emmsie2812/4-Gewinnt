@@ -3,9 +3,6 @@
 #include <unistd.h>
 #include <chrono>
 
-//strings eingabe verhindern --> fuck you schreiben wenn string eingeben
-//Win Coins eingabe bei diagonal
-
 
 bool end_game(int winlose);
 
@@ -23,11 +20,11 @@ int main(){
     while(time){ 
         std::cout<<"Your Turn:";
         spiellogik->place_chip_user(5,5);
-        spiellogik->field.field_output(5,5);
+        spiellogik->field.field_output(5,5); //Größe des Spielfeldes
         int winlose = spiellogik->win_lose(5,5,4);
         //4 steht fuer wie viele Coins du brauchst um zu gewinnen, abgepasst um deine Level einfacher zu gestalten
-        if(end_game(winlose)){
-            break;
+        if(end_game(winlose)){ //Kontrolle ob gewonnen oder verloren 
+            break; //Hier erreicht dann spiel beendet hier kannst du was einfügen um ins nächste Level zu gelangen
         }
         std::cout<<"Enemy Turn: \n";
         sleep(1);
