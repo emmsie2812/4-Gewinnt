@@ -1,4 +1,5 @@
 #include "field.hpp"
+#include "level.hpp"
 #define RED "\033[31m" /* Red */
 #define YELLOW "\033[33m" /* Yellow */
 #define RESET "\033[0m"
@@ -10,10 +11,24 @@ Field::Field(){}
 //Feld empty ist für das zurück setzen für erreichen eines neuen Levels
 //Du kannst hier Variablen als Parameter eingeben die das Feld jeweils vergrößern oder so
 void Field::field_output(int columns, int lines){ 
+    Level level;
+    int* level_setup;
+    level_setup = level.level_1();
+    //level.level_2();
+    //std::cout << level_setup[0] << level_setup[1] << level_setup[2];
 
-    std::cout << "| 1  | 2  | 3  | 4  | 5  |\n";
-    std::cout << "_______________________________\n";
 
+
+
+    for(int field_label = 1; field_label <= lines; field_label++){
+        std::cout << "|  " << field_label << " ";
+    }
+    std::cout << "\n";
+    int max_field_separation = lines * 4;
+    for(int field_separation = 1; field_separation <= max_field_separation; field_separation = field_separation + 4){
+        std::cout << "_____";
+    }
+    std::cout << "\n";
     for (int i = lines-1; i >= 0; i--) //i Lines , j columns
     {
         std::cout << "|  ";
@@ -32,8 +47,10 @@ void Field::field_output(int columns, int lines){
         }
 
         std::cout << "\b\n"; 
-
-        std::cout << "_______________________________\n";
+        for(int field_separation = 1; field_separation <= max_field_separation; field_separation = field_separation + 4){
+                std::cout << "_____";
+            }
+        std::cout << "\n";
     }
 }
 

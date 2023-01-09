@@ -1,7 +1,7 @@
-4gewinnt: field.o 4Gewinnt.o spiellogik.o screens.o
-	g++ -o 4gewinnt field.o 4Gewinnt.o spiellogik.o screens.o
+4gewinnt: field.o 4Gewinnt.o spiellogik.o screens.o level.o
+	g++ -o 4gewinnt field.o 4Gewinnt.o spiellogik.o screens.o level.o
 
-field.o: field.cpp field.hpp
+field.o: field.cpp field.hpp level.hpp
 	g++ -c field.cpp
 
 4Gewinnt.o: 4Gewinnt.cpp	
@@ -9,6 +9,9 @@ field.o: field.cpp field.hpp
 
 screens.o: screens.cpp screens.hpp
 	g++ -c screens.cpp
+
+level.o: level.cpp level.hpp
+	g++ -c level.cpp
 
 spiellogik.o: spiellogik.cpp spiellogik.hpp CppRandom.hpp 
 	g++ -c spiellogik.cpp
