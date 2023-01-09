@@ -14,7 +14,7 @@ void Field::field_output(int columns, int lines){
     std::cout << "| 1  | 2  | 3  | 4  | 5  |\n";
     std::cout << "_______________________________\n";
 
-    for (int i = lines-1; i >= 0; i--)
+    for (int i = lines-1; i >= 0; i--) //i Lines , j columns
     {
         std::cout << "|  ";
 

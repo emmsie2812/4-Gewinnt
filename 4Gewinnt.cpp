@@ -1,5 +1,6 @@
 #include "field.hpp"
 #include "spiellogik.hpp"
+#include "screens.hpp"
 #include <unistd.h>
 #include <chrono>
 
@@ -39,36 +40,42 @@ int main(){
 }
 
 bool end_game(int winlose){
-
+    Screens screen;
         switch (winlose)
         {
         case 1:
-            std::cout << "You Win Horizontal\n";
+            sleep(1);
+            screen.win_screen_horizontal();
             //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
             break;
         case 2:
-            std::cout << "You Lose Horizontal\n";
+            sleep(1);
+            screen.lose_screen_horizontal();
             //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
             break;
         case 3:
-            std::cout << "You Win Vertical\n";
+            sleep(1);
+            screen.win_screen_vertikal();
             //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
             break;
         case 4:
-            std::cout << "You Lose Vertical \n";
+            sleep(1);
+            screen.lose_screen_vertikal();
             //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
             break;
         case 5:
-            std::cout << "You Win Diagonal \n";
+            sleep(1);
+            screen.win_screen_diagonal();
             //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
             break;
         case 6:
-            std::cout << "You Lose Diagonal \n";
+            sleep(1);
+            screen.lose_screen_diagonal();
             //hier kannst du was einfuegen um zum naechsten Level zu gelangen
             return true;
             break;       
