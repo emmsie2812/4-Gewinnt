@@ -12,7 +12,7 @@ int main(){
     Spiellogik *spiellogik = new Spiellogik(*game_field);
     bool time = true;
 
-    spiellogik->field.field_output(5,5);//einmal anzeigen um zu sehen wie das spielfeld aussieht
+    spiellogik->field.field_output();//einmal anzeigen um zu sehen wie das spielfeld aussieht
     //field_output(Spalten, Zeilen)
 
     //fieldoutput und win_lose haben die columns und lines als Input damit kannst du deine if abfragen steuern das 
@@ -21,7 +21,7 @@ int main(){
     while(time){ 
         std::cout<<"Your Turn:";
         spiellogik->place_chip_user(5,5);
-        spiellogik->field.field_output(5,5); //Größe des Spielfeldes
+        spiellogik->field.field_output(); //Größe des Spielfeldes
         int winlose = spiellogik->win_lose(5,5,4);
         //4 steht fuer wie viele Coins du brauchst um zu gewinnen, abgepasst um deine Level einfacher zu gestalten
         if(end_game(winlose)){ //Kontrolle ob gewonnen oder verloren 
@@ -30,7 +30,7 @@ int main(){
         std::cout<<"Enemy Turn: \n";
         sleep(1);
         spiellogik->place_chip_random(5,5);
-        spiellogik->field.field_output(5,5);
+        spiellogik->field.field_output();
         winlose = spiellogik->win_lose(5,5,4);
         if(end_game(winlose)){
             break;

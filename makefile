@@ -7,7 +7,7 @@ field.o: field.cpp field.hpp level.hpp
 4Gewinnt.o: 4Gewinnt.cpp	
 	g++ -c 4Gewinnt.cpp
 
-screens.o: screens.cpp screens.hpp
+screens.o: screens.cpp
 	g++ -c screens.cpp
 
 level.o: level.cpp level.hpp
