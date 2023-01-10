@@ -3,16 +3,25 @@
 #include "screens.hpp"
 #include <unistd.h>
 #include <chrono>
+#include <fstream>
 
 
 bool end_game(int winlose);
+int* level_setup;
 
 int main(){
+    Screens screen;
+    level_setup = screen.main_menu();
+    int columns = level_setup[0];
+    int lines = level_setup[1];
+    int wincoins = level_setup[2];
+    int get_level = level_setup[3];
+
     Field *game_field = new Field();
     Spiellogik *spiellogik = new Spiellogik(*game_field);
     bool time = true;
 
-    spiellogik->field.field_output();//einmal anzeigen um zu sehen wie das spielfeld aussieht
+    spiellogik->field.field_output(columns, lines);//einmal anzeigen um zu sehen wie das spielfeld aussieht
     //field_output(Spalten, Zeilen)
 
     //fieldoutput und win_lose haben die columns und lines als Input damit kannst du deine if abfragen steuern das 
@@ -21,7 +30,7 @@ int main(){
     while(time){ 
         std::cout<<"Your Turn:";
         spiellogik->place_chip_user(5,5);
-        spiellogik->field.field_output(); //Größe des Spielfeldes
+        spiellogik->field.field_output(columns, lines); //Größe des Spielfeldes
         int winlose = spiellogik->win_lose(5,5,4);
         //4 steht fuer wie viele Coins du brauchst um zu gewinnen, abgepasst um deine Level einfacher zu gestalten
         if(end_game(winlose)){ //Kontrolle ob gewonnen oder verloren 
@@ -30,7 +39,7 @@ int main(){
         std::cout<<"Enemy Turn: \n";
         sleep(1);
         spiellogik->place_chip_random(5,5);
-        spiellogik->field.field_output();
+        spiellogik->field.field_output(columns, lines);
         winlose = spiellogik->win_lose(5,5,4);
         if(end_game(winlose)){
             break;

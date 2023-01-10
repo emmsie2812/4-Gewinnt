@@ -7,6 +7,7 @@ int* Level::level_1(){
     level_setup[0] = 4; //columns
     level_setup[1] = 4; //lines
     level_setup[2] = 4; //win_coins
+    level_setup[3] = 1; //Level
     std::cout << "Level 1";
    return level_setup;
 }
@@ -46,7 +47,7 @@ int* Level::level_6(){
    return level_setup;
 }
 
-int* Level::level_7(){
+int* Level::level_7(){                                                                  //To do
     /*int field_column_random = GetRandomNumberBetween(5,10);
     int field_line_random = GetRandomNumberBetween(5,10);
     int field_win_coins = GetRandomNumberBetween(4,6);
@@ -54,8 +55,11 @@ int* Level::level_7(){
     level_setup[0] = field_column_random; //columns
     level_setup[1] = field_line_random; //lines
     level_setup[2] = field_win_coins; //win_coins
-    
-   return level_setup;*/
-   printf("Hier in level 7");
+    */
+    level_setup[0] = 7; //columns
+    level_setup[1] = 7; //lines
+    level_setup[2] = 6; //win_coins
+    return level_setup;
+    printf("Hier in level 7");
 }
 

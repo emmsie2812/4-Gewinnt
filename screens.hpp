@@ -11,4 +11,8 @@ class Screens{
         void lose_screen_vertikal();
         void lose_screen_horizontal();
         void lose_screen_diagonal();
+        void main_menu();
+        int* start_menu();
+        void end_menu();
+
 };
