@@ -2,7 +2,7 @@
 #include <iostream>
 
 class Level{
-    int levelSetup[3];
+    int columnsLinesWinCoins[2];
 
     public:
         int* level_1();
@@ -13,4 +13,6 @@ class Level{
         int* level_6();
         int* level_7();
         int getLevel();
+        void saveLevel(int newLevel);
+        int* levelSetup();
 };

@@ -20,7 +20,7 @@ class Screens{
         void getInput1Or2();
         void invalidInputCout();
         void clear();
-        int startMenu();
+        void startMenu();
         void endMenuWin();
         void endMenuLose();
 

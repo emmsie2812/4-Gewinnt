@@ -1,5 +1,6 @@
 #include "screens.hpp"
 #include "level.hpp"
+#include "startEnd.hpp"
 #include <iostream>
 #include <unistd.h>
 
@@ -54,115 +55,7 @@ void Screens::loseCout(){
     "****************************************\n"
     "\n";
 }
-/*
-void Screens::winScreenVertical(){
-    clear();        //defined below by ANSI escape sequence 
-    std::cout << "\n"
-    "****************************************\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*              Nice turn!              *\n"
-    "*          You won vertically          *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "****************************************\n"
-    "\n";
-}
 
-void Screens::winScreenHorizontal(){
-    clear();
-    std::cout << "\n"
-    "****************************************\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*              Nice turn!              *\n"
-    "*         You won horizontally         *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "****************************************\n"
-    "\n";
-}
-
-void Screens::winScreenDiagonal(){
-    clear();
-    std::cout << "\n"
-    "****************************************\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*              Nice turn!              *\n"
-    "*          You won diagonally          *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "****************************************\n"
-    "\n";
-}
-
-void Screens::loseScreenVertical(){
-    clear();
-    std::cout << "\n"
-    "****************************************\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                Oh no!                *\n"
-    "*         You lost vertically!         *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "****************************************\n"
-    "\n";
-}
-
-void Screens::loseScreenHorizontal(){
-    clear();
-    std::cout << "\n"
-    "****************************************\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                Oh no!                *\n"
-    "*        You lost horizontally!        *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "****************************************\n"
-    "\n";
-}
-
-void Screens::loseScreenDiagonal(){
-    clear();
-    std::cout << "\n"
-    "****************************************\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                Oh no!                *\n"
-    "*         You lost diagonally!         *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "*                                      *\n"
-    "****************************************\n"
-    "\n";
-}
-*/
 void Screens::startMenuCout(){
     clear();
     std::cout << "\n"
@@ -232,7 +125,7 @@ void Screens::clear()
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int Screens::startMenu(){   
+void Screens::startMenu(){   
     bool validInput = false;
     startMenuCout();
     getInput1Or2();
@@ -244,9 +137,11 @@ int Screens::startMenu(){
             startNewCout(); //Output
             sleep(1);
             clear();
+            Level level;
+            level.saveLevel(1);
             validInput = true;
             int start_new = 1;
-            return start_new;
+            //return start_new;
         }
         else if(startInput==2){
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -254,11 +149,12 @@ int Screens::startMenu(){
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             startWithLevel(); //Output
             Level level;
-            return level.getLevel();
+            //return level.getLevel();
         }
         else{invalidInputCout();} //Output
     }
-    return 10;      //Error
+    clear();
+    //return 10;      //Error
 }       
 
 void Screens::endMenuWin(){
@@ -271,9 +167,18 @@ void Screens::endMenuWin(){
         std::cin >> WinInput; // Get user input from the keyboard
         if(WinInput==1 || WinInput==2){validInputWin=true;}
     }
-    int resentLevel;
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Is always executed, because you don't want to play the level again the next time you start the game, but you want to start in the new level
+    int newLevel;
     Level level;
-    resentLevel = level.getLevel();
+    newLevel = level.getLevel() + 1;
+    level.saveLevel(newLevel);
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    if(WinInput==1){
+        StartEnd startEnd;
+        startEnd.startGame();
+    }
 }
 void Screens::endMenuLose(){
     bool validInputLose = false;
