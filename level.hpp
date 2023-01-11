@@ -2,7 +2,7 @@
 #include <iostream>
 
 class Level{
-    int level_setup[3];
+    int levelSetup[3];
 
     public:
         int* level_1();

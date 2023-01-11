@@ -1,5 +1,5 @@
-4gewinnt: field.o 4Gewinnt.o spiellogik.o screens.o level.o
-	g++ -o 4gewinnt field.o 4Gewinnt.o spiellogik.o screens.o level.o
+4gewinnt: field.o 4Gewinnt.o screens.o spiellogik.o level.o
+	g++ -o 4gewinnt screens.o field.o 4Gewinnt.o spiellogik.o level.o
 
 field.o: field.cpp field.hpp
 	g++ -c field.cpp
@@ -7,7 +7,7 @@ field.o: field.cpp field.hpp
 4Gewinnt.o: 4Gewinnt.cpp	
 	g++ -c 4Gewinnt.cpp
 
-screens.o: screens.cpp screens.hpp
+screens.o: screens.cpp screens.hpp level.hpp
 	g++ -c screens.cpp
 
 level.o: level.cpp level.hpp
