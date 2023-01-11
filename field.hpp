@@ -3,10 +3,6 @@
 
 class Field{
     
-
-    private:
-        
-
     public:
         void fieldOutput(int columns, int lines);
         void fieldEmpty();

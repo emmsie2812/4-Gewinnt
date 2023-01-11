@@ -143,13 +143,10 @@ void Screens::startMenu(){
             int start_new = 1;
             //return start_new;
         }
-        else if(startInput==2){
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // getLevel() liest die Datei saved_levels.txt aus und gibt das Level zurück
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        else if(startInput==2){        
             startWithLevel(); //Output
-            Level level;
-            //return level.getLevel();
+            StartEnd startEnd;
+            startEnd.startGame();
         }
         else{invalidInputCout();} //Output
     }

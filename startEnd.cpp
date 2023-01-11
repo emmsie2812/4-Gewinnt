@@ -8,8 +8,6 @@
 Screens screen;
 
 void StartEnd::startGame(){
-    screen.startMenu();
-    
     Level level;
     int* columnsLinesWinCoins;
     columnsLinesWinCoins = level.levelSetup();

@@ -1,11 +1,11 @@
-#include "startEnd.hpp"
+#include "screens.hpp"
 #include <unistd.h>
 #include <chrono>
 
 
 int main(){
-    StartEnd startEnd;
-    startEnd.startGame();
+    Screens screen;
+    screen.startMenu();
 
     return 0;
 }
