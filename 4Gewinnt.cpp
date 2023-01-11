@@ -7,15 +7,23 @@
 
 
 bool end_game(int winlose);
-int* level_setup;
+int level_setup;
+Screens screen;
 
 int main(){
-    Screens screen;
-    level_setup = screen.main_menu();
-    int columns = level_setup[0];
+    //Configuration->setColums();
+    //Configuration->setLines()
+    //startGame()
+    //level_setup = screen.start_menu();
+    /*int columns = level_setup[0];
     int lines = level_setup[1];
     int wincoins = level_setup[2];
-    int get_level = level_setup[3];
+    int get_level = level_setup[3];*/
+
+    int columns = 4;
+    int lines = 5;
+    int wincoins = 4;
+    int get_level = 6;
 
     Field *game_field = new Field();
     Spiellogik *spiellogik = new Spiellogik(*game_field);
@@ -49,7 +57,7 @@ int main(){
 }
 
 bool end_game(int winlose){
-    Screens screen;
+    
         switch (winlose)
         {
         case 1:

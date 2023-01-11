@@ -1,6 +1,4 @@
 #include "field.hpp"
-#include "level.hpp"
-#include <fstream>
 #define RED "\033[31m" /* Red */
 #define YELLOW "\033[33m" /* Yellow */
 #define RESET "\033[0m"
