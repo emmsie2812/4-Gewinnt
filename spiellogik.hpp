@@ -6,17 +6,17 @@
 class Spiellogik{
 
     private:
-        int user_input;
+        int userInput;
 
     public:
-        void place_chip_user(int columns, int lines);
-        void place_chip_random(int columns, int lines);
-        bool invalid_input(int columns, int lines, int user_input);
-        int win_lose(int columns, int lines, int win_coins);
-        int diagonal_win_lose(int columns, int lines,int win_coins);
-        int vertical_win_lose(int columns, int lines,int win_coins);
-        int horizontal_win_lose(int columns, int lines,int win_coins);
+        void placeChipUser(int columns, int lines);
+        void placeChipRandom(int columns, int lines);
+        bool invalidInput(int columns, int lines, int userInput);
+        int winLose(int columns, int lines, int winCoins);
+        int diagonalWinLose(int columns, int lines,int winCoins);
+        int verticalWinLose(int columns, int lines,int winCoins);
+        int horizontalWinLose(int columns, int lines,int winCoins);
         Field field;
         Spiellogik();
-        Spiellogik(Field &game_field);
+        Spiellogik(Field &gameField);
 };

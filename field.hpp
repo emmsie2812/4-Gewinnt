@@ -8,8 +8,8 @@ class Field{
         
 
     public:
-        void field_output(int columns, int lines);
-        void field_empty();
-        char game_field[10][10];
+        void fieldOutput(int columns, int lines);
+        void fieldEmpty();
+        char gameField[10][10];
         Field();
 };

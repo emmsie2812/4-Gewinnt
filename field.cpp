@@ -9,13 +9,13 @@ Field::Field(){}
 //Feld für Level vergrößern und bei feld_ausgeben() und feld_leer() jeweils anpassen
 //Feld empty ist für das zurück setzen für erreichen eines neuen Levels
 //Du kannst hier Variablen als Parameter eingeben die das Feld jeweils vergrößern oder so
-void Field::field_output(int columns, int lines){ 
-    for(int field_label = 1; field_label <= lines; field_label++){
-        std::cout << "|  " << field_label << " ";
+void Field::fieldOutput(int columns, int lines){ 
+    for(int fieldLabel = 1; fieldLabel <= lines; fieldLabel++){
+        std::cout << "|  " << fieldLabel << " ";
     }
     std::cout << "\n";
-    int max_field_separation = lines * 4;
-    for(int field_separation = 1; field_separation <= max_field_separation; field_separation = field_separation + 4){
+    int maxFieldSeparation = lines * 4;
+    for(int fieldSeparation = 1; fieldSeparation <= maxFieldSeparation; fieldSeparation = fieldSeparation + 4){
         std::cout << "_____";
     }
     std::cout << "\n";
@@ -26,30 +26,30 @@ void Field::field_output(int columns, int lines){
         for (int j = 0; j < columns; j++)
         {
             std::string color = WHITE;
-            if(game_field[j][i] == 'O'){
+            if(gameField[j][i] == 'O'){
                 color = YELLOW;
             }
             
-            if(game_field[j][i] == 'X'){
+            if(gameField[j][i] == 'X'){
                 color = RED;
             }
-            std::cout << color << game_field[j][i] << RESET "  |  ";
+            std::cout << color << gameField[j][i] << RESET "  |  ";
         }
 
         std::cout << "\b\n"; 
-        for(int field_separation = 1; field_separation <= max_field_separation; field_separation = field_separation + 4){
+        for(int fieldSeparation = 1; fieldSeparation <= maxFieldSeparation; fieldSeparation = fieldSeparation + 4){
                 std::cout << "_____";
             }
         std::cout << "\n";
     }
 }
 
-void Field::field_empty(){
+void Field::fieldEmpty(){
     for (unsigned int i = 0; i < 5; ++i)
     {
         for (unsigned int j = 0; j < 5; ++j)
         {
-            game_field[j][i] = ' ';
+            gameField[j][i] = ' ';
         }
     }
 }

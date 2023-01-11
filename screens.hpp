@@ -22,6 +22,6 @@ class Screens{
         void clear();
         int startMenu();
         void endMenuWin();
-        void endMenulose();
+        void endMenuLose();
 
 };

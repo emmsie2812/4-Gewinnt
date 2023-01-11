@@ -233,10 +233,10 @@ void Screens::clear()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int Screens::startMenu(){   
-    bool valid_input = false;
+    bool validInput = false;
     startMenuCout();
     getInput1Or2();
-    while(!valid_input){
+    while(!validInput){
         int startInput; 
         std::cin >> startInput; // Get user input from the keyboard
         clear();
@@ -244,7 +244,7 @@ int Screens::startMenu(){
             startNewCout(); //Output
             sleep(1);
             clear();
-            valid_input = true;
+            validInput = true;
             int start_new = 1;
             return start_new;
         }
@@ -262,16 +262,30 @@ int Screens::startMenu(){
 }       
 
 void Screens::endMenuWin(){
-    int startInputWin; 
-    std::cin >> startInputWin; // Get user input from the keyboard
-    winCout();
-    getInput1Or2();
+    bool validInputWin = false;
+    int WinInput;
+    clear();
+    while(!validInputWin){ 
+        winCout();
+        getInput1Or2();
+        std::cin >> WinInput; // Get user input from the keyboard
+        if(WinInput==1 || WinInput==2){validInputWin=true;}
+    }
+    int resentLevel;
+    Level level;
+    resentLevel = level.getLevel();
 }
-void Screens::endMenulose(){
-    int startInput; 
-    std::cin >> startInput; // Get user input from the keyboard
-    loseCout();
-    getInput1Or2();
+void Screens::endMenuLose(){
+    bool validInputLose = false;
+    int loseInput; 
+    clear();
+    while(!validInputLose){
+        loseCout();
+        getInput1Or2();
+        std::cin >> loseInput; // Get user input from the keyboard
+        if(loseInput==1 || loseInput==2){validInputLose=true;}
+    }
+
 }
 
        
