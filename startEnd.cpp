@@ -1,6 +1,6 @@
 #include "startEnd.hpp"
 #include "field.hpp"
-#include "spiellogik.hpp"
+#include "gameLogic.hpp"
 #include "screens.hpp"
 #include "level.hpp"
 #include <iostream>
@@ -19,24 +19,24 @@ void StartEnd::startGame(){
     //Erklärung was in Level
 
     Field *gameField = new Field();
-    Spiellogik *spiellogik = new Spiellogik(*gameField);
+    GameLogic *gameLogic = new GameLogic(*gameField);
     bool time = true;
     while(time){ 
         screen.clear();
-        spiellogik->field.fieldOutput(columns, row);
+        gameLogic->field.fieldOutput(columns, row);
         std::cout<<"Your Turn:";
-        spiellogik->placeChipUser(columns,row);
-        spiellogik->field.fieldOutput(columns, row); //Größe des Spielfeldes
-        int winlose = spiellogik->winLose(columns,row,wincoins);
+        gameLogic->placeChipUser(columns,row);
+        gameLogic->field.fieldOutput(columns, row); //Größe des Spielfeldes
+        int winlose = gameLogic->winLose(columns,row,wincoins);
         //4 steht fuer wie viele Coins du brauchst um zu gewinnen, abgepasst um deine Level einfacher zu gestalten
         if(end_game(winlose)){ //Kontrolle ob gewonnen oder verloren 
             break; //Hier erreicht dann spiel beendet hier kannst du was einfügen um ins nächste Level zu gelangen
         }
         std::cout<<"Enemy Turn: \n";
         //sleep(1);
-        spiellogik->placeChipRandom(columns,row);
-        //spiellogik->field.fieldOutput(columns, row);
-        winlose = spiellogik->winLose(columns,row,wincoins);
+        gameLogic->placeChipRandom(columns,row);
+        //gameLogic->field.fieldOutput(columns, row);
+        winlose = gameLogic->winLose(columns,row,wincoins);
         if(end_game(winlose)){
             break;
         }   

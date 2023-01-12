@@ -3,7 +3,7 @@
 #include <iostream>
 #include<limits>
 
-class Spiellogik{
+class GameLogic{
 
     private:
         int userInput;
@@ -18,6 +18,6 @@ class Spiellogik{
         int verticalWinLose(int columns, int row,int winCoins);
         int horizontalWinLose(int columns, int row,int winCoins);
         Field field;
-        Spiellogik();
-        Spiellogik(Field &gameField);
+        GameLogic();
+        GameLogic(Field &gameField);
 };

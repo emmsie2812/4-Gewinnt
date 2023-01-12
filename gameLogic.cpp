@@ -1,4 +1,4 @@
-#include "spiellogik.hpp"
+#include "gameLogic.hpp"
 #include "CppRandom.hpp"
 #include <random>
 
@@ -7,13 +7,13 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
  
-Spiellogik::Spiellogik(){}
+GameLogic::GameLogic(){}
 
-Spiellogik::Spiellogik(Field &gameField){
+GameLogic::GameLogic(Field &gameField){
     field = gameField;
 }
 
-bool Spiellogik:: invalidInputUser(int columns, int row, int userInput){
+bool GameLogic:: invalidInputUser(int columns, int row, int userInput){
     if(userInput > columns || userInput == 0 || field.gameField[userInput-1][row-1] == 'O'|| field.gameField[userInput-1][row-1] == 'X'|| !userInput){
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -22,14 +22,14 @@ bool Spiellogik:: invalidInputUser(int columns, int row, int userInput){
     } 
     return true;
 }
-bool Spiellogik:: invalidInputEnemy(int columns, int row, int userInput){
+bool GameLogic:: invalidInputEnemy(int columns, int row, int userInput){
     if(userInput > columns || userInput == 0 || field.gameField[userInput-1][row-1] == 'O'|| field.gameField[userInput-1][row-1] == 'X'|| !userInput){
         return false;
     } 
     return true;
 }
 
-void Spiellogik::placeChipUser(int columns, int row){
+void GameLogic::placeChipUser(int columns, int row){
 
     bool validInput = false;
     int userInput;
@@ -50,7 +50,7 @@ void Spiellogik::placeChipUser(int columns, int row){
     }
 }
 
-void Spiellogik::placeChipRandom(int columns, int row){
+void GameLogic::placeChipRandom(int columns, int row){
 
     int columnRandom;
     bool validInput = false;
@@ -70,7 +70,7 @@ void Spiellogik::placeChipRandom(int columns, int row){
     }  
 }
 
-int Spiellogik:: horizontalWinLose(int columns, int row,int winCoins){
+int GameLogic:: horizontalWinLose(int columns, int row,int winCoins){
 //waagrecht
     for (int i = 0; i < row; i++){
         int count1_Me = 0;
@@ -95,7 +95,7 @@ int Spiellogik:: horizontalWinLose(int columns, int row,int winCoins){
     return 0;
 }
 
-int Spiellogik:: verticalWinLose(int columns, int row,int winCoins){
+int GameLogic:: verticalWinLose(int columns, int row,int winCoins){
     //senkrecht
     for (int j = 0; j < columns; j++){
         int count1_Me = 0;
@@ -120,7 +120,7 @@ int Spiellogik:: verticalWinLose(int columns, int row,int winCoins){
     return 0;
 }
 
-int Spiellogik:: diagonalWinLose(int columns, int row,int winCoins){
+int GameLogic:: diagonalWinLose(int columns, int row,int winCoins){
     //diagonal left-top to right-bottom
     for(int i=0; i<row+1; i++){
         for (int j=0; j<columns+1; j++){
@@ -173,7 +173,7 @@ int Spiellogik:: diagonalWinLose(int columns, int row,int winCoins){
     return 0;
 }
 
-int Spiellogik::winLose(int columns, int row,int winCoins){
+int GameLogic::winLose(int columns, int row,int winCoins){
     int win = 0;
 
     int horizontalWin = horizontalWinLose(columns,row,winCoins);
