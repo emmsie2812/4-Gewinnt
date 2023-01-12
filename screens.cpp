@@ -114,9 +114,17 @@ void Screens::invalidInputCout(){
     std::cout << "\nPlease try again 1 or 2! ";
 }
 
-void Screens::clear()
-{
+void Screens::clear(){
     std::cout << "\x1B[2J\x1B[H";
+}
+
+void Screens::levelDescription(){
+    Level level;
+    int resentLevel;
+    resentLevel = level.getLevel();
+    int* columnsLinesWinCoins;
+    columnsLinesWinCoins = level.levelSetup();
+    std::cout << "You are in level " << resentLevel <<".\nHere you have a " << columnsLinesWinCoins[0] << "x" << columnsLinesWinCoins[1] << " field \nand you need " << columnsLinesWinCoins[2] << " of your stones \nin a horizontal, vertical or diagonal line to win.\nGood luck!\n\n";
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -129,6 +137,7 @@ void Screens::startMenu(){
     bool validInput = false;
     startMenuCout();
     getInput1Or2();
+    StartEnd startEnd;
     while(!validInput){
         int startInput; 
         std::cin >> startInput; // Get user input from the keyboard
@@ -141,11 +150,10 @@ void Screens::startMenu(){
             level.saveLevel(1);
             validInput = true;
             int start_new = 1;
-            //return start_new;
+            startEnd.startGame();
         }
         else if(startInput==2){        
             startWithLevel(); //Output
-            StartEnd startEnd;
             startEnd.startGame();
         }
         else{invalidInputCout();} //Output
@@ -186,6 +194,10 @@ void Screens::endMenuLose(){
         getInput1Or2();
         std::cin >> loseInput; // Get user input from the keyboard
         if(loseInput==1 || loseInput==2){validInputLose=true;}
+    }
+    if(loseInput==1){
+        StartEnd startEnd;
+        startEnd.startGame();
     }
 
 }

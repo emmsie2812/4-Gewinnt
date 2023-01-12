@@ -12,7 +12,7 @@ void StartEnd::startGame(){
     int* columnsLinesWinCoins;
     columnsLinesWinCoins = level.levelSetup();
     int columns = columnsLinesWinCoins[0];
-    int lines = columnsLinesWinCoins[1];
+    int row = columnsLinesWinCoins[1];
     int wincoins = columnsLinesWinCoins[2];
 
     ///////////////////////////////////////////////
@@ -23,20 +23,20 @@ void StartEnd::startGame(){
     bool time = true;
     while(time){ 
         screen.clear();
-        spiellogik->field.fieldOutput(columns, lines);
+        spiellogik->field.fieldOutput(columns, row);
         std::cout<<"Your Turn:";
-        spiellogik->placeChipUser(columns,lines);
-        spiellogik->field.fieldOutput(columns, lines); //Größe des Spielfeldes
-        int winlose = spiellogik->winLose(columns,lines,wincoins);
+        spiellogik->placeChipUser(columns,row);
+        spiellogik->field.fieldOutput(columns, row); //Größe des Spielfeldes
+        int winlose = spiellogik->winLose(columns,row,wincoins);
         //4 steht fuer wie viele Coins du brauchst um zu gewinnen, abgepasst um deine Level einfacher zu gestalten
         if(end_game(winlose)){ //Kontrolle ob gewonnen oder verloren 
             break; //Hier erreicht dann spiel beendet hier kannst du was einfügen um ins nächste Level zu gelangen
         }
         std::cout<<"Enemy Turn: \n";
         //sleep(1);
-        spiellogik->placeChipRandom(columns,lines);
-        //spiellogik->field.fieldOutput(columns, lines);
-        winlose = spiellogik->winLose(columns,lines,wincoins);
+        spiellogik->placeChipRandom(columns,row);
+        //spiellogik->field.fieldOutput(columns, row);
+        winlose = spiellogik->winLose(columns,row,wincoins);
         if(end_game(winlose)){
             break;
         }   

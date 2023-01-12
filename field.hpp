@@ -4,7 +4,7 @@
 class Field{
     
     public:
-        void fieldOutput(int columns, int lines);
+        void fieldOutput(int columns, int row);
         void fieldEmpty();
         char gameField[10][10];
         Field();

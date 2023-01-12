@@ -15,14 +15,14 @@
 
 
 int* Level::level_1(){
-    columnsLinesWinCoins[0] = 4; //columns
-    columnsLinesWinCoins[1] = 4; //lines
-    columnsLinesWinCoins[2] = 4; //win_coins
+    columnsLinesWinCoins[0] = 7; //columns
+    columnsLinesWinCoins[1] = 7; //lines
+    columnsLinesWinCoins[2] = 4; //win_coins 
    return columnsLinesWinCoins;
 }
 int* Level::level_2(){
-    columnsLinesWinCoins[0] = 5; //columns
-    columnsLinesWinCoins[1] = 5; //lines
+    columnsLinesWinCoins[0] = 6; //columns
+    columnsLinesWinCoins[1] = 6; //lines
     columnsLinesWinCoins[2] = 4; //win_coins
    return columnsLinesWinCoins;
 }
@@ -39,15 +39,15 @@ int* Level::level_4(){
    return columnsLinesWinCoins;
 }
 int* Level::level_5(){
-    columnsLinesWinCoins[0] = 6; //columns
-    columnsLinesWinCoins[1] = 6; //lines
-    columnsLinesWinCoins[2] = 5; //win_coins
+    columnsLinesWinCoins[0] = 5; //columns
+    columnsLinesWinCoins[1] = 5; //lines
+    columnsLinesWinCoins[2] = 4; //win_coins
    return columnsLinesWinCoins;
 }
 int* Level::level_6(){
-    columnsLinesWinCoins[0] = 7; //columns
-    columnsLinesWinCoins[1] = 7; //lines
-    columnsLinesWinCoins[2] = 6; //win_coins
+    columnsLinesWinCoins[0] = 4; //columns
+    columnsLinesWinCoins[1] = 4; //lines
+    columnsLinesWinCoins[2] = 4; //win_coins
    return columnsLinesWinCoins;
 }
 
@@ -60,9 +60,9 @@ int* Level::level_7(){                                                          
     columnsLinesWinCoins[1] = field_line_random; //lines
     columnsLinesWinCoins[2] = field_win_coins; //win_coins
     */
-    columnsLinesWinCoins[0] = 7; //columns
-    columnsLinesWinCoins[1] = 7; //lines
-    columnsLinesWinCoins[2] = 6; //win_coins*/
+    columnsLinesWinCoins[0] = 8; //columns
+    columnsLinesWinCoins[1] = 8; //lines
+    columnsLinesWinCoins[2] = 5; //win_coins*/
     return columnsLinesWinCoins;
     //printf("Hier in level 7");
 }

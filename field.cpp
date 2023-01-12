@@ -1,4 +1,5 @@
 #include "field.hpp"
+#include "screens.hpp"
 #define RED "\033[31m" /* Red */
 #define YELLOW "\033[33m" /* Yellow */
 #define RESET "\033[0m"
@@ -9,17 +10,19 @@ Field::Field(){}
 //Feld für Level vergrößern und bei feld_ausgeben() und feld_leer() jeweils anpassen
 //Feld empty ist für das zurück setzen für erreichen eines neuen Levels
 //Du kannst hier Variablen als Parameter eingeben die das Feld jeweils vergrößern oder so
-void Field::fieldOutput(int columns, int lines){ 
-    for(int fieldLabel = 1; fieldLabel <= lines; fieldLabel++){
+void Field::fieldOutput(int columns, int row){ 
+    Screens screen;
+    screen.levelDescription();      //Output
+    for(int fieldLabel = 1; fieldLabel <= columns; fieldLabel++){
         std::cout << "|  " << fieldLabel << " ";
     }
-    std::cout << "\n";
-    int maxFieldSeparation = lines * 4;
+    std::cout << "|\n";
+    int maxFieldSeparation = columns * 4;
     for(int fieldSeparation = 1; fieldSeparation <= maxFieldSeparation; fieldSeparation = fieldSeparation + 4){
         std::cout << "_____";
     }
     std::cout << "\n";
-    for (int i = lines-1; i >= 0; i--) //i Lines , j columns
+    for (int i = row-1; i >= 0; i--) //i rows , j columns
     {
         std::cout << "|  ";
 

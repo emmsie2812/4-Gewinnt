@@ -9,13 +9,14 @@ class Spiellogik{
         int userInput;
 
     public:
-        void placeChipUser(int columns, int lines);
-        void placeChipRandom(int columns, int lines);
-        bool invalidInput(int columns, int lines, int userInput);
-        int winLose(int columns, int lines, int winCoins);
-        int diagonalWinLose(int columns, int lines,int winCoins);
-        int verticalWinLose(int columns, int lines,int winCoins);
-        int horizontalWinLose(int columns, int lines,int winCoins);
+        void placeChipUser(int columns, int row);
+        void placeChipRandom(int columns, int row);
+        bool invalidInputUser(int columns, int row, int userInput);
+        bool invalidInputEnemy(int columns, int row, int userInput);
+        int winLose(int columns, int row, int winCoins);
+        int diagonalWinLose(int columns, int row,int winCoins);
+        int verticalWinLose(int columns, int row,int winCoins);
+        int horizontalWinLose(int columns, int row,int winCoins);
         Field field;
         Spiellogik();
         Spiellogik(Field &gameField);
