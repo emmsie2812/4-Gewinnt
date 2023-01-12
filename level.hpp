@@ -23,4 +23,5 @@ class Level{
         int getLevel();
         void saveLevel(int newLevel);
         int* levelSetup();
+        void incrementLevelInFile();
 };

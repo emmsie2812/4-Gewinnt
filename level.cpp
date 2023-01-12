@@ -121,4 +121,8 @@ int* Level::levelSetup(){
     columnsLinesWinCoins[2] = 4; //win_coins
     return columnsLinesWinCoins; //Default
 }
+void Level::incrementLevelInFile() {
+    newLevel = getLevel() + 1;
+    level.saveLevel(newLevel);
+}
 

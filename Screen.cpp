@@ -13,7 +13,7 @@ From here pure output area by cout
 *********************************************************************/
 
 
-void Screen::winCout() {
+void Screen::printWin() {
     clearScreen();
     std::cout << "\n"
         "****************************************\n"
@@ -34,7 +34,7 @@ void Screen::winCout() {
         "\n";
 }
 
-void Screen::loseCout() {
+void Screen::printLose() {
     clearScreen();
     std::cout << "\n"
         "****************************************\n"
@@ -55,7 +55,7 @@ void Screen::loseCout() {
         "\n";
 }
 
-void Screen::startMenuCout() {
+void Screen::printStartMenu() {
     clearScreen();
     std::cout << "\n"
         "****************************************\n"
@@ -74,7 +74,7 @@ void Screen::startMenuCout() {
         "\n";
 }
 
-void Screen::startNewCout() {
+void Screen::printStartNew() {
     clearScreen();
     std::cout << "\n"
         "****************************************\n"
@@ -91,7 +91,7 @@ void Screen::startNewCout() {
         "\n";
 }
 
-void Screen::startWithLevel() {
+void Screen::printStartWithLevel() {
     clearScreen();
     std::cout << "\n"
         "****************************************\n"
@@ -108,12 +108,12 @@ void Screen::startWithLevel() {
         "\n";        
 }
 
-void Screen::getInput1Or2() {
+void Screen::printAskForUserInput1Or2() {
     std::cout << "Please enter 1 or 2! ";
 }
 
-void Screen::invalidInputCout() {
-    startMenuCout();
+void Screen::printInvalidInput() {
+    printStartMenu();
     std::cout << "\nPlease try again 1 or 2! ";
 }
 
@@ -121,7 +121,7 @@ void Screen::clearScreen() {
     std::cout << "\x1B[2J\x1B[H";
 }
 
-void Screen::levelDescriptioncout(int* columnsLinesWinCoins, int recentLevel) {
+void Screen::printLevelDescription(int* columnsLinesWinCoins, int recentLevel) {
     std::cout << "You are in level " << recentLevel <<".\nHere you have a " << columnsLinesWinCoins[0] << "x" << columnsLinesWinCoins[1] << " field \nand you need " << columnsLinesWinCoins[2] << " of your stones \nin a horizontal, vertical or diagonal line to win.\nGood luck!\n\n";
 }
 
@@ -138,7 +138,7 @@ Collects the level settings to be printed for the user
     recentLevel = level.getLevel();
     int* columnsLinesWinCoins;
     columnsLinesWinCoins = level.levelSetup();
-    levelDescriptioncout(columnsLinesWinCoins, recentLevel);     //Output
+    printLevelDescription(columnsLinesWinCoins, recentLevel);     //Output
 }
 
 void Screen::startMenu() {    
@@ -150,18 +150,18 @@ void Screen::startMenu() {
     *********************************************************************/
 
     bool validInput = false;
-    startMenuCout();                    //Output
-    getInput1Or2();                     //Output
+    printStartMenu();                   //Output
+    printAskForUserInput1Or2();         //Output
     StartEnd startEnd;
 
-    while(!validInput) {
+    while (!validInput) {
         int startInput; 
         std::cin >> startInput;         // Get user input from the keyboard
         clearScreen();
         
-        switch(startInput) {            //1 means to begin a new game. The saved level will be overwritten to 1
+        switch (startInput) {            //1 means to begin a new game. The saved level will be overwritten to 1
             case 1:
-                startNewCout();         //Output
+                printStartNew();        //Output
                 sleep(1);
                 clearScreen();
                 Level level;
@@ -170,78 +170,81 @@ void Screen::startMenu() {
                 startEnd.startGame();   //Starts the game 
                 break;
             case 2:
-                startWithLevel();       //Output
+                printStartWithLevel();  //Output
                 startEnd.startGame();   //Starts the game 
                 break;
             default:
-                invalidInputCout();     //Output
+                printInvalidInput();    //Output
         }
     }
     clearScreen();
 }       
 
 void Screen::endMenuWin() {
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Win screen
-    //Possible actions:
-    //  1 play next level
-    //  2 leave game
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*********************************************************************
+Win screen
+Possible actions:
+    1 play next level
+    2 leave game
+*********************************************************************/
 
-    bool validInputWin = false;
-    int WinInput;
     clearScreen();
-
-    while(!validInputWin) { 
-        winCout();
-        getInput1Or2();
-        std::cin >> WinInput; // Get user input from the keyboard
-        if (WinInput == 1 || WinInput == 2) {
-            validInputWin = true;
-        }
+    isValidInputFromUserByKeyboard = false;
+    while (!validInputWin) { 
+        printWin();
+        printAskForUserInput1Or2();
+        isValidInputFromUserByKeyboard = getInputFromUser();
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Is always executed, because you don't want to play the level again the next time you start the game, but you want to start in the new level
-    int newLevel;
-    Level level;
-    newLevel = level.getLevel() + 1;
-    level.saveLevel(newLevel);
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    if(WinInput==1){
+/*********************************************************************
+    Is always executed, because you don't want to play the level again the next time you start the game, but you want to start in the new level*/
+    level.incrementLevelInFile();
+/********************************************************************/
+    if (WinInput==1) {
         StartEnd startEnd;
-        startEnd.startGame(); //Starts the game
+        startEnd.startGame();           //Starts the game
     }
 }
 void Screen::endMenuLose(){
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Lose screen
-    //Possible actions:
-    //  1 play level again
-    //  2 leave game
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*********************************************************************
+Lose screen
+Possible actions:
+    1 play level again
+    2 leave game
+********************************************************************/
 
-    bool validInputLose = false;
-    int loseInput; 
     clearScreen();
-    while(!validInputLose){
-        loseCout();            //Output
-        getInput1Or2();        //Output
-        std::cin >> loseInput; // Get user input from the keyboard
-        if(loseInput==1 || loseInput==2){validInputLose=true;}
+    isValidInputFromUserByKeyboard = false;
+    while (!isValidInputFromUserByKeyboard) {
+        printLose();                       //Output
+        printAskForUserInput1Or2();        //Output
+        isValidInputFromUserByKeyboard = getInputFromUser();
     }
-    if(loseInput==1){          //Play Level again
+
+    if (loseInput == 1) {          //Play Level again
         StartEnd startEnd;
         startEnd.startGame();  //Starts the game
     }
-
-
 /*
     selection = askUserWithStartscreen()
     if (selection == 1) {
         this.gameController->StartGame();
     }*/
 
+}
+
+bool Screen::getInputFromUser() {
+/*********************************************************************
+Gets input from user by keyboard
+*********************************************************************/
+
+    int InputFromUserByKeyboard;
+    std::cin >> InputFromUserByKeyboard;           // Get user input from the keyboard
+        if (InputFromUserByKeyboard == 1 || InputFromUserByKeyboard == 2) {
+            return true;
+        } else {
+            return false;
+        }
 }
 
        

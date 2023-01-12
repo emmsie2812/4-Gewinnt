@@ -10,21 +10,23 @@
 
 class Screen{
     private: 
+        bool isValidInputFromUserByKeyboard;
         //gameController* StartEnd; 
     public:
         Screen();
-        void loseCout();
-        void winCout();
-        void startMenuCout();
-        void startNewCout();
-        void startWithLevel();
-        void getInput1Or2();
-        void invalidInputCout();
+        void printLose();
+        void printWin();
+        void printStartMenu();
+        void printStartNew();
+        void printStartWithLevel();
+        void printAskForUserInput1Or2();
+        void printInvalidInput();
         void clearScreen();
-        void levelDescriptioncout(int* columnsLinesWinCoins,int resentLevel);
+        void printLevelDescription(int* columnsLinesWinCoins,int resentLevel);
         void levelDescription();
         void startMenu();
         void endMenuWin();
         void endMenuLose();
+        bool getInputFromUser();
 
 };
