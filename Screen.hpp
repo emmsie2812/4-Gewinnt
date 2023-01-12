@@ -7,7 +7,6 @@ Screens and logic behind the screens
 
 *********************************************************************/
 
-
 class Screen {
     private: 
         bool isValidInputFromUserByKeyboard;

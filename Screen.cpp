@@ -209,6 +209,7 @@ Possible actions:
         startGame.startGame();                                   //Starts the game
     }
 }
+
 void Screen::endMenuLose() {
 /*********************************************************************
 Lose screen
@@ -242,6 +243,4 @@ Gets input from user by keyboard
     int inputFromUserByKeyboard1Or2;
     std::cin >> inputFromUserByKeyboard1Or2;           // Get user input from the keyboard
     return inputFromUserByKeyboard1Or2;
-}
-
-       
+}   
