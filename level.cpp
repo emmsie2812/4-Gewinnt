@@ -8,7 +8,7 @@
 //
 //Defined levels. An array is returned. 
 //At position 0 the columns
-//At position 1 the lines
+//At position 1 the rows
 //At position 2 the needed number of stones to win
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,37 +16,37 @@
 
 int* Level::level_1(){
     columnsLinesWinCoins[0] = 7; //columns
-    columnsLinesWinCoins[1] = 7; //lines
+    columnsLinesWinCoins[1] = 7; //rows
     columnsLinesWinCoins[2] = 4; //win_coins 
    return columnsLinesWinCoins;
 }
 int* Level::level_2(){
     columnsLinesWinCoins[0] = 6; //columns
-    columnsLinesWinCoins[1] = 6; //lines
+    columnsLinesWinCoins[1] = 6; //rows
     columnsLinesWinCoins[2] = 4; //win_coins
    return columnsLinesWinCoins;
 }
 int* Level::level_3(){
     columnsLinesWinCoins[0] = 6; //columns
-    columnsLinesWinCoins[1] = 6; //lines
+    columnsLinesWinCoins[1] = 6; //rows
     columnsLinesWinCoins[2] = 4; //win_coins
    return columnsLinesWinCoins;
 }
 int* Level::level_4(){
     columnsLinesWinCoins[0] = 4; //columns
-    columnsLinesWinCoins[1] = 6; //lines
+    columnsLinesWinCoins[1] = 6; //rows
     columnsLinesWinCoins[2] = 4; //win_coins
    return columnsLinesWinCoins;
 }
 int* Level::level_5(){
     columnsLinesWinCoins[0] = 5; //columns
-    columnsLinesWinCoins[1] = 5; //lines
+    columnsLinesWinCoins[1] = 5; //rows
     columnsLinesWinCoins[2] = 4; //win_coins
    return columnsLinesWinCoins;
 }
 int* Level::level_6(){
     columnsLinesWinCoins[0] = 4; //columns
-    columnsLinesWinCoins[1] = 4; //lines
+    columnsLinesWinCoins[1] = 4; //rows
     columnsLinesWinCoins[2] = 4; //win_coins
    return columnsLinesWinCoins;
 }
@@ -57,17 +57,20 @@ int* Level::level_7(){                                                          
     int field_win_coins = GetRandomNumberBetween(4,6);
 
     columnsLinesWinCoins[0] = field_column_random; //columns
-    columnsLinesWinCoins[1] = field_line_random; //lines
+    columnsLinesWinCoins[1] = field_line_random; //rows
     columnsLinesWinCoins[2] = field_win_coins; //win_coins
     */
     columnsLinesWinCoins[0] = 8; //columns
-    columnsLinesWinCoins[1] = 8; //lines
+    columnsLinesWinCoins[1] = 8; //rows
     columnsLinesWinCoins[2] = 5; //win_coins*/
     return columnsLinesWinCoins;
     //printf("Hier in level 7");
 }
 
 int Level::getLevel(){
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //returns the last saved level from file
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     std::string levelFromFile;
     std::ifstream fileSavedLevels("saved_levels.txt");
     while(getline(fileSavedLevels, levelFromFile)){
@@ -79,6 +82,9 @@ int Level::getLevel(){
 }
 
 void Level::saveLevel(int newLevel){
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //stores level in file
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     std::ofstream saveLevelInFile;
     saveLevelInFile.open("saved_levels.txt");
     saveLevelInFile << newLevel;
@@ -86,8 +92,11 @@ void Level::saveLevel(int newLevel){
 }
 
 int* Level::levelSetup(){
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //returns the level setup (columns, rows, wincoins) depending on the level stored in the file
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     int levelFromFile;
-    levelFromFile = getLevel();
+    levelFromFile = getLevel();     //gets level from file
     switch(levelFromFile) {
                 case 1:
                     return level_1();
@@ -106,9 +115,9 @@ int* Level::levelSetup(){
                 default:
                     return level_7();
             }
-
+    //default if somethings wrong. Game wouldn't stop
     columnsLinesWinCoins[0] = 4; //columns
-    columnsLinesWinCoins[1] = 4; //lines
+    columnsLinesWinCoins[1] = 4; //rows
     columnsLinesWinCoins[2] = 4; //win_coins
     return columnsLinesWinCoins; //Default
 }

@@ -9,9 +9,7 @@ Screens::Screens(){
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
 //From here pure output area by cout
-//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -118,51 +116,72 @@ void Screens::clear(){
     std::cout << "\x1B[2J\x1B[H";
 }
 
-void Screens::levelDescription(){
+
+void Screens::levelDescriptioncout(int* columnsLinesWinCoins,int resentLevel){
+    std::cout << "You are in level " << resentLevel <<".\nHere you have a " << columnsLinesWinCoins[0] << "x" << columnsLinesWinCoins[1] << " field \nand you need " << columnsLinesWinCoins[2] << " of your stones \nin a horizontal, vertical or diagonal line to win.\nGood luck!\n\n";
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//From here comes the logical part behind the screens
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+void Screens::levelDescription(){   
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Collects the level settings to be printed for the user
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     Level level;
     int resentLevel;
     resentLevel = level.getLevel();
     int* columnsLinesWinCoins;
     columnsLinesWinCoins = level.levelSetup();
-    std::cout << "You are in level " << resentLevel <<".\nHere you have a " << columnsLinesWinCoins[0] << "x" << columnsLinesWinCoins[1] << " field \nand you need " << columnsLinesWinCoins[2] << " of your stones \nin a horizontal, vertical or diagonal line to win.\nGood luck!\n\n";
-}
+    levelDescriptioncout(columnsLinesWinCoins,resentLevel);     //Output
+    }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//From here comes the logical part behind the menus
-//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Screens::startMenu(){
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Start menu at the beginning of the game
+    //Possible actions:
+    //  1 start new game in level 1
+    //  2 start with the stored level in file
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void Screens::startMenu(){   
     bool validInput = false;
-    startMenuCout();
-    getInput1Or2();
+    startMenuCout();            //Output
+    getInput1Or2();             //Output
     StartEnd startEnd;
     while(!validInput){
         int startInput; 
         std::cin >> startInput; // Get user input from the keyboard
         clear();
-        if(startInput==1){
-            startNewCout(); //Output
+        if(startInput==1){      //1 means to begin a new game. The saved level will be overwritten to 1
+            startNewCout();     //Output
             sleep(1);
             clear();
             Level level;
-            level.saveLevel(1);
+            level.saveLevel(1); //overwrite saved level in file
             validInput = true;
-            int start_new = 1;
-            startEnd.startGame();
+            startEnd.startGame();   //Starts the game 
+            //todo hier break rein machen?????????????????????????????????????????????????????
         }
         else if(startInput==2){        
-            startWithLevel(); //Output
-            startEnd.startGame();
+            startWithLevel();   //Output
+            startEnd.startGame();   //Starts the game 
         }
         else{invalidInputCout();} //Output
     }
     clear();
-    //return 10;      //Error
 }       
 
 void Screens::endMenuWin(){
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Win screen
+    //Possible actions:
+    //  1 play next level
+    //  2 leave game
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     bool validInputWin = false;
     int WinInput;
     clear();
@@ -182,22 +201,29 @@ void Screens::endMenuWin(){
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     if(WinInput==1){
         StartEnd startEnd;
-        startEnd.startGame();
+        startEnd.startGame(); //Starts the game
     }
 }
 void Screens::endMenuLose(){
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Lose screen
+    //Possible actions:
+    //  1 play level again
+    //  2 leave game
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     bool validInputLose = false;
     int loseInput; 
     clear();
     while(!validInputLose){
-        loseCout();
-        getInput1Or2();
+        loseCout();            //Output
+        getInput1Or2();        //Output
         std::cin >> loseInput; // Get user input from the keyboard
         if(loseInput==1 || loseInput==2){validInputLose=true;}
     }
-    if(loseInput==1){
+    if(loseInput==1){          //Play Level again
         StartEnd startEnd;
-        startEnd.startGame();
+        startEnd.startGame();  //Starts the game
     }
 
 }

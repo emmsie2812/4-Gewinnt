@@ -5,7 +5,7 @@
 
 int main(){
     Screens screen;
-    screen.startMenu();
+    screen.startMenu();     //Open start Menu, start game in there
 
     return 0;
 }

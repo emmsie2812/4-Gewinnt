@@ -1,3 +1,11 @@
 # 4-Gewinnt
 
-als Konsolen-Spiel programmiert in C++ als Abschlussprojekt für die Vorlesung.
+Als Konsolen-Spiel programmiert in C++ als Abschlussprojekt für die Vorlesung.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Um das Spiel auszuführen muss folgendes ausgeführt werden:
+
+make
+./4gewinnt
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
