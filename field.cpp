@@ -1,5 +1,5 @@
 #include "field.hpp"
-#include "screens.hpp"
+#include "Screen.hpp"
 #define RED "\033[31m" /* Red */
 #define YELLOW "\033[33m" /* Yellow */
 #define RESET "\033[0m"
@@ -11,7 +11,7 @@ void Field::fieldOutput(int columns, int row){
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //To output the game field by cout 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    Screens screen;
+    Screen screen;
     screen.levelDescription();      //Output
     for(int fieldLabel = 1; fieldLabel <= columns; fieldLabel++){
         std::cout << "|  " << fieldLabel << " ";

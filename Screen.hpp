@@ -8,10 +8,11 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-class Screens{
-    
+class Screen{
+    private: 
+        //gameController* StartEnd; 
     public:
-        Screens();
+        Screen();
         void loseCout();
         void winCout();
         void startMenuCout();
@@ -19,7 +20,7 @@ class Screens{
         void startWithLevel();
         void getInput1Or2();
         void invalidInputCout();
-        void clear();
+        void clearScreen();
         void levelDescriptioncout(int* columnsLinesWinCoins,int resentLevel);
         void levelDescription();
         void startMenu();

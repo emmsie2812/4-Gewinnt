@@ -3,6 +3,13 @@
 #include <iostream>
 #include<limits>
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//Game logic to place the chips and check the input and winning / losing rows
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 class GameLogic{
 
     private:
@@ -10,7 +17,7 @@ class GameLogic{
 
     public:
         void placeChipUser(int columns, int row);
-        void placeChipRandom(int columns, int row);
+        void placeChipEnemy(int columns, int row);
         bool invalidInputUser(int columns, int row, int userInput);
         bool invalidInputEnemy(int columns, int row, int userInput);
         int winLose(int columns, int row, int winCoins);

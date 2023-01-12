@@ -14,6 +14,10 @@ GameLogic::GameLogic(Field &gameField){
 }
 
 bool GameLogic:: invalidInputUser(int columns, int row, int userInput){
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//checks the input of the player 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
     if(userInput > columns || userInput == 0 || field.gameField[userInput-1][row-1] == 'O'|| field.gameField[userInput-1][row-1] == 'X'|| !userInput){
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -23,6 +27,10 @@ bool GameLogic:: invalidInputUser(int columns, int row, int userInput){
     return true;
 }
 bool GameLogic:: invalidInputEnemy(int columns, int row, int userInput){
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//checks the input of the Enemy(Computer) 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     if(userInput > columns || userInput == 0 || field.gameField[userInput-1][row-1] == 'O'|| field.gameField[userInput-1][row-1] == 'X'|| !userInput){
         return false;
     } 
@@ -30,6 +38,9 @@ bool GameLogic:: invalidInputEnemy(int columns, int row, int userInput){
 }
 
 void GameLogic::placeChipUser(int columns, int row){
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Places the chip of the user after checking if the game field is empty
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     bool validInput = false;
     int userInput;
@@ -40,7 +51,7 @@ void GameLogic::placeChipUser(int columns, int row){
     }
 
 
-    for(int i = 0; i<row; i++){
+    for(int i = 0; i<row; i++){                              //Places the chip of the user
         if(field.gameField[userInput-1][i] == NULL ){
             field.gameField[userInput-1][i] = 'O';
             break;
@@ -50,7 +61,10 @@ void GameLogic::placeChipUser(int columns, int row){
     }
 }
 
-void GameLogic::placeChipRandom(int columns, int row){
+void GameLogic::placeChipEnemy(int columns, int row){
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Places the chip of the enemy after checking if the game field is empty
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     int columnRandom;
     bool validInput = false;
@@ -60,7 +74,7 @@ void GameLogic::placeChipRandom(int columns, int row){
         validInput = invalidInputEnemy(columns,row, columnRandom);
     }
 
-    for(int i = 0; i<row; i++){
+    for(int i = 0; i<row; i++){                             //Places the chip of the enemy
         if(field.gameField[columnRandom-1][i] == NULL ){
             field.gameField[columnRandom-1][i] = 'X';
             break;
@@ -71,7 +85,10 @@ void GameLogic::placeChipRandom(int columns, int row){
 }
 
 int GameLogic:: horizontalWinLose(int columns, int row,int winCoins){
-//waagrecht
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Checking for a horizontal winning or losing row
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     for (int i = 0; i < row; i++){
         int count1_Me = 0;
         int count2_Enemy = 0;
@@ -84,10 +101,10 @@ int GameLogic:: horizontalWinLose(int columns, int row,int winCoins){
                 count2_Enemy++;
                 count1_Me = 0;
             }
-            if(count1_Me == winCoins){
+            if(count1_Me == winCoins){          //Win user
                 return 1;
             }
-            if(count2_Enemy==winCoins){
+            if(count2_Enemy==winCoins){         //Win enemy
                 return 2;
             }
         }
@@ -96,7 +113,10 @@ int GameLogic:: horizontalWinLose(int columns, int row,int winCoins){
 }
 
 int GameLogic:: verticalWinLose(int columns, int row,int winCoins){
-    //senkrecht
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Checking for a vertical winning or losing row
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     for (int j = 0; j < columns; j++){
         int count1_Me = 0;
         int count2_Enemy = 0;
@@ -109,11 +129,11 @@ int GameLogic:: verticalWinLose(int columns, int row,int winCoins){
                 count2_Enemy++;
                 count1_Me = 0;
             }
-            if(count1_Me == winCoins){
-                return 3;
+            if(count1_Me == winCoins){      //win user
+                return 1;
             }
-            if(count2_Enemy== winCoins){
-                return 4;
+            if(count2_Enemy== winCoins){    //win enemy
+                return 2;
             }
         }
     }
@@ -121,6 +141,10 @@ int GameLogic:: verticalWinLose(int columns, int row,int winCoins){
 }
 
 int GameLogic:: diagonalWinLose(int columns, int row,int winCoins){
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Checking for a diagonal winning or losing row
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     //diagonal left-top to right-bottom
     for(int i=0; i<row+1; i++){
         for (int j=0; j<columns+1; j++){
@@ -137,10 +161,10 @@ int GameLogic:: diagonalWinLose(int columns, int row,int winCoins){
                     count1_Me = 0;
                 }
                 if(count1_Me == winCoins){
-                    return 5;
+                    return 1;
                 }
                 if(count2_Enemy== winCoins){
-                    return 6;
+                    return 2;
                 }
             }
         }
@@ -162,10 +186,10 @@ int GameLogic:: diagonalWinLose(int columns, int row,int winCoins){
                     count1_Me = 0;
                 }
                 if(count1_Me == winCoins){
-                    return 5;
+                    return 1;
                 }
                 if(count2_Enemy== winCoins){
-                    return 6;
+                    return 2;
                 }
             }
         }
@@ -173,18 +197,20 @@ int GameLogic:: diagonalWinLose(int columns, int row,int winCoins){
     return 0;
 }
 
-int GameLogic::winLose(int columns, int row,int winCoins){
+int GameLogic::winLose(int columns, int row,int winCoins) {
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     int win = 0;
 
-    int horizontalWin = horizontalWinLose(columns,row,winCoins);
-    int verticalWin = verticalWinLose(columns,row, winCoins);
-    int diagonalWin = diagonalWinLose(columns,row, winCoins);
-    if(horizontalWin != 0){
-        win = horizontalWin;
-    }else if(verticalWin != 0){
-        win = verticalWin;
-    }else if(diagonalWin != 0){
-        win = diagonalWin;
+    int WinUserOrEnemyHorizontal = horizontalWinLose(columns,row,winCoins);
+    int WinUserOrEnemyVertical = verticalWinLose(columns,row, winCoins);
+    int WinUserOrEnemyDiagonal = diagonalWinLose(columns,row, winCoins);
+    if ((WinUserOrEnemyHorizontal || WinUserOrEnemyVertical ||  WinUserOrEnemyDiagonal) == 0) {
+        win = 0;
+    }else if ((WinUserOrEnemyHorizontal || WinUserOrEnemyVertical ||  WinUserOrEnemyDiagonal) == 1) {
+        win = 1;
     }
     return win;
 }

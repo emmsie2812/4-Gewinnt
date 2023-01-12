@@ -10,7 +10,7 @@
 
 
 class Level{
-    int columnsLinesWinCoins[2];
+    int columnsLinesWinCoins[3];
 
     public:
         int* level_1();

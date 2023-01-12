@@ -1,28 +1,34 @@
 #include "startEnd.hpp"
 #include "field.hpp"
 #include "gameLogic.hpp"
-#include "screens.hpp"
+#include "Screen.hpp"
 #include "level.hpp"
 #include <iostream>
 
-Screens screen;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Start and end the game
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Screen screen;
 
 void StartEnd::startGame(){
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Start game
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     Level level;
     int* columnsLinesWinCoins;
-    columnsLinesWinCoins = level.levelSetup();
+    columnsLinesWinCoins = level.levelSetup();      //Get columns, rows and wincoins
     int columns = columnsLinesWinCoins[0];
     int row = columnsLinesWinCoins[1];
     int wincoins = columnsLinesWinCoins[2];
 
-    ///////////////////////////////////////////////
-    //Erklärung was in Level
-
     Field *gameField = new Field();
     GameLogic *gameLogic = new GameLogic(*gameField);
     bool time = true;
-    while(time){ 
-        screen.clear();
+    while(time){    //
+        screen.clearScreen();
         gameLogic->field.fieldOutput(columns, row);
         std::cout<<"Your Turn:";
         gameLogic->placeChipUser(columns,row);
@@ -34,7 +40,7 @@ void StartEnd::startGame(){
         }
         std::cout<<"Enemy Turn: \n";
         //sleep(1);
-        gameLogic->placeChipRandom(columns,row);
+        gameLogic->placeChipEnemy(columns,row);
         //gameLogic->field.fieldOutput(columns, row);
         winlose = gameLogic->winLose(columns,row,wincoins);
         if(end_game(winlose)){
@@ -57,18 +63,6 @@ bool StartEnd::end_game(int winlose){
         case 2:
             screen.endMenuLose();
             return true;
-        case 3:
-            screen.endMenuWin();
-            return true;
-        case 4:
-            screen.endMenuLose();
-            return true;
-        case 5:
-            screen.endMenuWin();
-            return true;
-        case 6:
-            screen.endMenuLose();
-            return true;    
         default:
             return false;
         }
