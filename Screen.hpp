@@ -1,16 +1,17 @@
 #pragma once
 #include <iostream>
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//Screens and logic behind the screens 
-//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*********************************************************************
+
+Screens and logic behind the screens 
+
+*********************************************************************/
 
 
-class Screen{
+class Screen {
     private: 
         bool isValidInputFromUserByKeyboard;
+        int inputFromUserByKeyboard1Or2;
         //gameController* StartEnd; 
     public:
         Screen();

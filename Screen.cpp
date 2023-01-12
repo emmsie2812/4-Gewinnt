@@ -1,11 +1,13 @@
 #include "Screen.hpp"
-#include "level.hpp"
-#include "startEnd.hpp"
+#include "Level.hpp"
+#include "StartGame.hpp"
 #include <iostream>
 #include <unistd.h>
 
 Screen::Screen(){
-    //this.gameController = new StartEnd();
+    //this.gameController = new StartGame();
+    //this.level = new Level();#
+    //Level level;
 }
 
 /*********************************************************************
@@ -149,29 +151,27 @@ void Screen::startMenu() {
         2 start with the stored level in file
     *********************************************************************/
 
-    bool validInput = false;
     printStartMenu();                   //Output
     printAskForUserInput1Or2();         //Output
-    StartEnd startEnd;
-
-    while (!validInput) {
-        int startInput; 
-        std::cin >> startInput;         // Get user input from the keyboard
+    StartGame startGame;
+    isValidInputFromUserByKeyboard = false;
+    while (!isValidInputFromUserByKeyboard) {
+        inputFromUserByKeyboard1Or2 = getInputFromUser();      // Get user input from the keyboard
         clearScreen();
-        
-        switch (startInput) {            //1 means to begin a new game. The saved level will be overwritten to 1
+        switch (inputFromUserByKeyboard1Or2) {            //1 means to begin a new game. The saved level will be overwritten to 1
             case 1:
                 printStartNew();        //Output
                 sleep(1);
                 clearScreen();
                 Level level;
                 level.saveLevel(1);     //overwrite saved level in file
-                validInput = true;
-                startEnd.startGame();   //Starts the game 
+                isValidInputFromUserByKeyboard = true;
+                startGame.startGame();   //Starts the game 
                 break;
             case 2:
                 printStartWithLevel();  //Output
-                startEnd.startGame();   //Starts the game 
+                startGame.startGame();   //Starts the game 
+                isValidInputFromUserByKeyboard = true;
                 break;
             default:
                 printInvalidInput();    //Output
@@ -190,22 +190,26 @@ Possible actions:
 
     clearScreen();
     isValidInputFromUserByKeyboard = false;
-    while (!validInputWin) { 
+    while (!isValidInputFromUserByKeyboard) { 
         printWin();
         printAskForUserInput1Or2();
-        isValidInputFromUserByKeyboard = getInputFromUser();
+        inputFromUserByKeyboard1Or2 = getInputFromUser();      // Get user input from the keyboard
+        if (inputFromUserByKeyboard1Or2 == 1 || inputFromUserByKeyboard1Or2 == 2) {
+            isValidInputFromUserByKeyboard = true;
+        }
     }
 
 /*********************************************************************
     Is always executed, because you don't want to play the level again the next time you start the game, but you want to start in the new level*/
+    Level level;
     level.incrementLevelInFile();
 /********************************************************************/
-    if (WinInput==1) {
-        StartEnd startEnd;
-        startEnd.startGame();           //Starts the game
+    if (inputFromUserByKeyboard1Or2 == 1) {
+        StartGame startGame;
+        startGame.startGame();                                   //Starts the game
     }
 }
-void Screen::endMenuLose(){
+void Screen::endMenuLose() {
 /*********************************************************************
 Lose screen
 Possible actions:
@@ -216,21 +220,18 @@ Possible actions:
     clearScreen();
     isValidInputFromUserByKeyboard = false;
     while (!isValidInputFromUserByKeyboard) {
-        printLose();                       //Output
-        printAskForUserInput1Or2();        //Output
-        isValidInputFromUserByKeyboard = getInputFromUser();
+        printLose();                                            //Output
+        printAskForUserInput1Or2();                             //Output
+        inputFromUserByKeyboard1Or2 = getInputFromUser();       // Get user input from the keyboard
+        if (inputFromUserByKeyboard1Or2 == 1 || inputFromUserByKeyboard1Or2 == 2) {
+            isValidInputFromUserByKeyboard = true;
+        }
     }
 
-    if (loseInput == 1) {          //Play Level again
-        StartEnd startEnd;
-        startEnd.startGame();  //Starts the game
+    if (inputFromUserByKeyboard1Or2 == 1) {                      //Play Level again
+        StartGame startGame;
+        startGame.startGame();                                    //Starts the game
     }
-/*
-    selection = askUserWithStartscreen()
-    if (selection == 1) {
-        this.gameController->StartGame();
-    }*/
-
 }
 
 bool Screen::getInputFromUser() {
@@ -238,13 +239,9 @@ bool Screen::getInputFromUser() {
 Gets input from user by keyboard
 *********************************************************************/
 
-    int InputFromUserByKeyboard;
-    std::cin >> InputFromUserByKeyboard;           // Get user input from the keyboard
-        if (InputFromUserByKeyboard == 1 || InputFromUserByKeyboard == 2) {
-            return true;
-        } else {
-            return false;
-        }
+    int inputFromUserByKeyboard1Or2;
+    std::cin >> inputFromUserByKeyboard1Or2;           // Get user input from the keyboard
+    return inputFromUserByKeyboard1Or2;
 }
 
        

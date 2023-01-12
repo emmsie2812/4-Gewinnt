@@ -1,23 +1,23 @@
-4gewinnt:  4Gewinnt.o Screen.o field.o gameLogic.o level.o startEnd.o
-	g++ -o 4gewinnt 4Gewinnt.o Screen.o field.o  gameLogic.o level.o startEnd.o
+4gewinnt:  4Gewinnt.o Screen.o Field.o GameLogic.o Level.o StartGame.o
+	g++ -o 4gewinnt 4Gewinnt.o Screen.o Field.o  GameLogic.o Level.o StartGame.o
 
-field.o: field.cpp field.hpp Screen.hpp
-	g++ -c field.cpp
+Field.o: Field.cpp Field.hpp Screen.hpp
+	g++ -c Field.cpp
 
 4Gewinnt.o: 4Gewinnt.cpp	
 	g++ -c 4Gewinnt.cpp
 
-Screen.o: Screen.cpp Screen.hpp level.hpp startEnd.hpp
+Screen.o: Screen.cpp Screen.hpp Level.hpp StartGame.hpp
 	g++ -c Screen.cpp
 
-level.o: level.cpp level.hpp
-	g++ -c level.cpp
+Level.o: Level.cpp Level.hpp
+	g++ -c Level.cpp
 
-gameLogic.o: gameLogic.cpp gameLogic.hpp CppRandom.hpp
-	g++ -c gameLogic.cpp
+GameLogic.o: GameLogic.cpp GameLogic.hpp CppRandom.hpp
+	g++ -c GameLogic.cpp
 
-startEnd.o: startEnd.cpp startEnd.hpp field.hpp gameLogic.hpp Screen.hpp level.hpp
-	g++ -c startEnd.cpp
+StartGame.o: StartGame.cpp StartGame.hpp Field.hpp GameLogic.hpp Screen.hpp Level.hpp
+	g++ -c StartGame.cpp
 
 clean: 
 	rm *.o 4gewinnt

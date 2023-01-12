@@ -1,6 +1,5 @@
 #include "Screen.hpp"
-#include <unistd.h>
-#include <chrono>
+#include <iostream>
 
 
 int main(){
