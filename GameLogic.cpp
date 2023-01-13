@@ -69,9 +69,10 @@ Places the chip of the enemy after checking if the game field is empty
     int columnRandom;
     bool validInput = false;
 
+
     while (!validInput) {
-        columnRandom = GetRandomNumberBetween(1,5);
-        validInput = invalidInputEnemy(columns,row, columnRandom);
+        columnRandom = GetRandomNumberBetween(1, row);
+        validInput = invalidInputEnemy(columns, row, columnRandom);
     }
 
     for (int i = 0; i<row; i++){                             //Places the chip of the enemy
@@ -211,9 +212,9 @@ checks the input of the enemy (computer)
     int WinUserOrEnemyVertical = verticalWinLose(columns, row, winCoins);
     int WinUserOrEnemyDiagonal = diagonalWinLose(columns, row, winCoins);
 
-    if ((WinUserOrEnemyHorizontal || WinUserOrEnemyVertical ||  WinUserOrEnemyDiagonal) == 1) {
+    if (WinUserOrEnemyHorizontal == 1 || WinUserOrEnemyVertical == 1 ||  WinUserOrEnemyDiagonal == 1) {
         win = 1;
-    }else if ((WinUserOrEnemyHorizontal || WinUserOrEnemyVertical ||  WinUserOrEnemyDiagonal) == 2) {
+    }else if (WinUserOrEnemyHorizontal == 2 || WinUserOrEnemyVertical == 2 ||  WinUserOrEnemyDiagonal == 2) {
         win = 2;
     }else {
         win = 3;
