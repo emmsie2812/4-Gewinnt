@@ -5,7 +5,7 @@
 #define RESET "\033[0m"
 #define WHITE "\033[37m" /* White */
 
-Field::Field(){
+Field::Field() {
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
             gameField[i][j] = '\0';
@@ -51,16 +51,3 @@ To output the game field by cout
         std::cout << "\n";
     }
 }
-/*
-void Field::fieldEmpty(int columns, int row) {
-/*********************************************************************
-empty game field
-*********************************************************************/
-/*
-   for (unsigned int i = 0; i < row; ++i) {
-        for (unsigned int j = 0; j < columns; ++j) {
-            gameField[j][i] = ' ';
-        }
-    }
-}*/
-

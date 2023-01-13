@@ -6,13 +6,15 @@
 To output the game field by cout 
 *********************************************************************/
  
-GameLogic::GameLogic() {}
+GameLogic::GameLogic() {
+
+}
 
 GameLogic::GameLogic(Field &gameField) {
     field = gameField;
 }
 
-bool GameLogic:: invalidInputUser(int columns, int row, int userInput) {
+bool GameLogic::invalidInputUser(int columns, int row, int userInput) {
 /*********************************************************************
 checks the input of the player
 *********************************************************************/
@@ -26,7 +28,7 @@ checks the input of the player
     return true;
 }
 
-bool GameLogic:: invalidInputEnemy(int columns, int row, int userInput) {
+bool GameLogic::invalidInputEnemy(int columns, int row, int userInput) {
 /*********************************************************************
 checks the input of the Enemy(Computer) 
 *********************************************************************/
@@ -50,7 +52,6 @@ Places the chip of the user after checking if the game field is empty
         validInput = invalidInputUser(columns,row, userInput);
     }
 
-
     for (int i = 0; i < row; i++) {                              //Places the chip of the user
         if (field.gameField[userInput-1][i] == NULL ) {
             field.gameField[userInput-1][i] = 'O';
@@ -69,14 +70,13 @@ Places the chip of the enemy after checking if the game field is empty
     int columnRandom;
     bool validInput = false;
 
-
     while (!validInput) {
         Random random;
         columnRandom = random.getRandomNumberBetween(1, row);
         validInput = invalidInputEnemy(columns, row, columnRandom);
     }
 
-    for (int i = 0; i<row; i++){                             //Places the chip of the enemy
+    for (int i = 0; i<row; i++) {                                 //Places the chip of the enemy
         if (field.gameField[columnRandom-1][i] == NULL ) {
             field.gameField[columnRandom-1][i] = 'X';
             break;
@@ -86,7 +86,7 @@ Places the chip of the enemy after checking if the game field is empty
     }  
 }
 
-int GameLogic::horizontalWinLose(int columns, int row,int winCoins) {
+int GameLogic::horizontalWinLose(int columns, int row, int winCoins) {
 /*********************************************************************
 Checking for a horizontal winning or losing row 
 *********************************************************************/
@@ -107,7 +107,7 @@ Checking for a horizontal winning or losing row
             if (count1_Me == winCoins) {          //Win user
                 return 1;
             }
-            if (count2_Enemy==winCoins) {         //Win enemy
+            if (count2_Enemy==winCoins) {        //Win enemy
                 return 2;
             }
         }
@@ -115,15 +115,16 @@ Checking for a horizontal winning or losing row
     return 0;
 }
 
-int GameLogic::verticalWinLose(int columns, int row,int winCoins) {
+int GameLogic::verticalWinLose(int columns, int row, int winCoins) {
 /*********************************************************************
 Checking for a vertical winning or losing row
 *********************************************************************/
 
-    for (int j = 0; j < columns; j++) {
+    for (int j = 0; j < columns; j++) {          //j = columns
         int count1_Me = 0;
         int count2_Enemy = 0;
-        for (int i = 0; i < row; i++) {
+
+        for (int i = 0; i < row; i++) {          //i = rows  
             if (field.gameField[j][i] == 'O') {
                 count1_Me++;
                 count2_Enemy = 0;
@@ -132,10 +133,10 @@ Checking for a vertical winning or losing row
                 count2_Enemy++;
                 count1_Me = 0;
             }
-            if (count1_Me == winCoins) {      //win user
+            if (count1_Me == winCoins) {         //win user
                 return 1;
             }
-            if (count2_Enemy == winCoins) {    //win enemy
+            if (count2_Enemy == winCoins) {      //win enemy
                 return 2;
             }
         }
@@ -149,9 +150,9 @@ Checking for a diagonal winning or losing row
 *********************************************************************/
 
     //diagonal left-top to right-bottom
-    for (int i=0; i<row+1; i++) {
+    for (int i=0; i<row+1; i++) {                //i = rows
 
-        for (int j=0; j<columns+1; j++) {
+        for (int j=0; j<columns+1; j++) {        //J = columns
             int count1_Me = 0;
             int count2_Enemy = 0;
 
@@ -164,10 +165,10 @@ Checking for a diagonal winning or losing row
                     count2_Enemy++;
                     count1_Me = 0;
                 }
-                if (count1_Me == winCoins) {
+                if (count1_Me == winCoins) {     //win user
                     return 1;
                 }
-                if (count2_Enemy== winCoins) {
+                if (count2_Enemy== winCoins) {   //win enemy
                     return 2;
                 }
             }
@@ -175,9 +176,9 @@ Checking for a diagonal winning or losing row
     }
 
     //diagonal left-bottom to right-top
-    for (int i=0; i<row+1; i++) {
+    for (int i=0; i<row+1; i++) {                //i = rows
 
-        for (int j=0; j<columns+1; j++) {
+        for (int j=0; j<columns+1; j++) {        //j = columns
             int count1_Me = 0;
             int count2_Enemy = 0;
 
@@ -190,10 +191,10 @@ Checking for a diagonal winning or losing row
                     count2_Enemy++;
                     count1_Me = 0;
                 }
-                if (count1_Me == winCoins) {
+                if (count1_Me == winCoins) {     //win user 
                     return 1;
                 }
-                if (count2_Enemy== winCoins) {
+                if (count2_Enemy== winCoins) {   //win enemy
                     return 2;
                 }
             }
@@ -204,7 +205,7 @@ Checking for a diagonal winning or losing row
 
 int GameLogic::winLose(int columns, int row, int winCoins) {
 /*********************************************************************
-checks the input of the enemy (computer) 
+Checks who has won
 *********************************************************************/
 
     int win = 0;

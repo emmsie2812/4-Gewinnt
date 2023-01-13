@@ -7,12 +7,12 @@ Starts the game
 
 *********************************************************************/
 
-class StartGame{
+class StartGame {
+
     public:
         StartGame();
         int* columnsRowsWinCoins;
         void startGame();
-        bool end_game(int winlose);
+        bool endGame(int winlose);
         void jumpToNextLevel();
-
 };

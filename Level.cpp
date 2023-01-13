@@ -11,48 +11,50 @@ At position 1 the rows
 At position 2 the needed number of stones to win
 *********************************************************************/
 
-Level::Level() {}
+Level::Level() {
+
+}
 
 int* Level::level_1() {
     columnsRowsWinCoins[0] = 7; //columns
     columnsRowsWinCoins[1] = 7; //rows
     columnsRowsWinCoins[2] = 4; //win_coins 
-   return columnsRowsWinCoins;
+    return columnsRowsWinCoins;
 }
 
 int* Level::level_2() {
     columnsRowsWinCoins[0] = 6; //columns
     columnsRowsWinCoins[1] = 6; //rows
     columnsRowsWinCoins[2] = 4; //win_coins
-   return columnsRowsWinCoins;
+    return columnsRowsWinCoins;
 }
 
 int* Level::level_3() {
     columnsRowsWinCoins[0] = 6; //columns
     columnsRowsWinCoins[1] = 6; //rows
     columnsRowsWinCoins[2] = 4; //win_coins
-   return columnsRowsWinCoins;
+    return columnsRowsWinCoins;
 }
 
 int* Level::level_4() {
     columnsRowsWinCoins[0] = 4; //columns
     columnsRowsWinCoins[1] = 6; //rows
     columnsRowsWinCoins[2] = 4; //win_coins
-   return columnsRowsWinCoins;
+    return columnsRowsWinCoins;
 }
 
 int* Level::level_5() {
     columnsRowsWinCoins[0] = 5; //columns
     columnsRowsWinCoins[1] = 5; //rows
     columnsRowsWinCoins[2] = 4; //win_coins
-   return columnsRowsWinCoins;
+    return columnsRowsWinCoins;
 }
 
 int* Level::level_6() {
     columnsRowsWinCoins[0] = 4; //columns
     columnsRowsWinCoins[1] = 4; //rows
     columnsRowsWinCoins[2] = 4; //win_coins
-   return columnsRowsWinCoins;
+    return columnsRowsWinCoins;
 }
 
 int* Level::level_7() {    
@@ -64,10 +66,6 @@ int* Level::level_7() {
     columnsRowsWinCoins[0] = field_column_random; //columns
     columnsRowsWinCoins[1] = field_line_random; //rows
     columnsRowsWinCoins[2] = field_win_coins; //win_coins
-    /*
-    columnsRowsWinCoins[0] = 8; //columns
-    columnsRowsWinCoins[1] = 8; //rows
-    columnsRowsWinCoins[2] = 5; //win_coins*/
     return columnsRowsWinCoins;
 }
 

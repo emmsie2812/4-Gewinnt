@@ -4,14 +4,22 @@
 #include <iostream>
 #include <unistd.h>
 
-Screen::Screen() {}
+/*********************************************************************
+
+Definition of the different menus and output area
+
+*********************************************************************/
+
+Screen::Screen() {
+
+}
+
 Level level;
 StartGame startGame;
 
 /*********************************************************************
 From here pure output area by cout
 *********************************************************************/
-
 
 void Screen::printWin() {
     clearScreen();
@@ -69,7 +77,6 @@ void Screen::printStartMenu() {
         "*          Then please press 2         *\n"
         "*       If you need a game guide       *\n"
         "*          Then please press 3         *\n"
-        "*                                      *\n"
         "*                                      *\n"
         "*                                      *\n"
         "****************************************\n"
@@ -162,16 +169,18 @@ From here comes the logical part behind the screen
 void Screen::levelDescription() {   
 /*********************************************************************
 Collects the level settings to be printed for the user
+Output means that a function is called with cout output from above
 *********************************************************************/
+
     int currentLevel;
     currentLevel = level.getLevel();
-    int* scolumnsRowsWinCoins;
-    if (currentLevel < 7){
-        scolumnsRowsWinCoins = level.levelSetup();
+    int* currentColumnsRowsWinCoins;
+    if (currentLevel < 7) {
+        currentColumnsRowsWinCoins = level.levelSetup();
     } else {
-        scolumnsRowsWinCoins = startGame.columnsRowsWinCoins;
+        currentColumnsRowsWinCoins = startGame.columnsRowsWinCoins;
     }
-    printLevelDescription(scolumnsRowsWinCoins, currentLevel);     //Output
+    printLevelDescription(currentColumnsRowsWinCoins, currentLevel);     //Output
 }
 
 void Screen::startMenu() {    
@@ -180,36 +189,37 @@ Start menu at the beginning of the game
 Possible actions:
     1 start new game in level 1
     2 start with the stored level in file
+    3 open help menu
 *********************************************************************/
 
-    printStartMenu();                   //Output
-    printAskForUserInput1Or2Or3();         //Output
+    printStartMenu();                                          //Output
+    printAskForUserInput1Or2Or3();                             //Output
     isValidInputFromUserByKeyboard = false;
     while (!isValidInputFromUserByKeyboard) {
         inputFromUserByKeyboard1Or2 = getInputFromUser();      // Get user input from the keyboard
         clearScreen();
-        switch (inputFromUserByKeyboard1Or2) {            //1 means to begin a new game. The saved level will be overwritten to 1
+        switch (inputFromUserByKeyboard1Or2) {                 //1 means to begin a new game. The saved level will be overwritten to 1
             case 1:
-                printStartNew();        //Output
+                printStartNew();                               //Output
                 sleep(1);
                 clearScreen();
                 
-                level.saveLevel(1);     //overwrite saved level in file
+                level.saveLevel(1);                            //overwrite saved level in file
                 isValidInputFromUserByKeyboard = true;
-                startGame.startGame();   //Starts the game 
+                startGame.startGame();                         //Starts the game 
                 break;
             case 2:
-                printStartWithLevel();  //Output
+                printStartWithLevel();                         //Output
                 sleep(1);
-                startGame.startGame();   //Starts the game 
+                startGame.startGame();                         //Starts the game 
                 isValidInputFromUserByKeyboard = true;
                 break;
             case 3:
-                helpMenu();             //open Help menu
+                helpMenu();                                    //open Help menu
                 isValidInputFromUserByKeyboard = true;
                 break;
             default:
-                printInvalidInput();    //Output
+                printInvalidInput();                           //Output
         }
     }
     clearScreen();
@@ -226,8 +236,8 @@ Possible actions:
     clearScreen();
     isValidInputFromUserByKeyboard = false;
     while (!isValidInputFromUserByKeyboard) { 
-        printWin();
-        printAskForUserInput1Or2();
+        printWin();                                            //Output
+        printAskForUserInput1Or2();                            //Output
         inputFromUserByKeyboard1Or2 = getInputFromUser();      // Get user input from the keyboard
         if (inputFromUserByKeyboard1Or2 == 1 || inputFromUserByKeyboard1Or2 == 2) {
             isValidInputFromUserByKeyboard = true;
@@ -235,11 +245,12 @@ Possible actions:
     }
 
 /*********************************************************************
-    Is always executed, because you don't want to play the level again the next time you start the game, but you want to start in the new level*/
+Is always executed, because you don't want to play the level again the next time you start the game, but you want to start in the new level*/
     level.incrementLevelInFile();
 /********************************************************************/
+
     if (inputFromUserByKeyboard1Or2 == 1) {
-        startGame.startGame();                                   //Starts the game
+        startGame.startGame();                                  //Starts the game !
     }
 }
 
@@ -262,8 +273,8 @@ Possible actions:
         }
     }
 
-    if (inputFromUserByKeyboard1Or2 == 1) {                      //Play Level again
-        startGame.startGame();                                    //Starts the game
+    if (inputFromUserByKeyboard1Or2 == 1) {                     //Play Level again
+        startGame.startGame();                                  //Starts the game
     }
 }
 
@@ -272,7 +283,7 @@ int Screen::getInputFromUser() {
 Gets input from user by keyboard
 *********************************************************************/
 
-    std::cin >> inputFromUserByKeyboard1Or2;           // Get user input from the keyboard
+    std::cin >> inputFromUserByKeyboard1Or2;                    // Get user input from the keyboard
     std::cout << inputFromUserByKeyboard1Or2;
     return inputFromUserByKeyboard1Or2;
 }   
@@ -282,7 +293,7 @@ void Screen::helpMenu() {
     printEnter1ToGetBackToStartMenu();
     isValidInputFromUserByKeyboard = false;
     while (!isValidInputFromUserByKeyboard) {
-        inputFromUserByKeyboard1 = getInputFromUser();       // Get user input from the keyboard
+        inputFromUserByKeyboard1 = getInputFromUser();          // Get user input from the keyboard
         if (inputFromUserByKeyboard1 == 1) {
             isValidInputFromUserByKeyboard = true;
         }

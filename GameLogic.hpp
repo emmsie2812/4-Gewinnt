@@ -13,7 +13,7 @@ class GameLogic {
 
     private:
         int userInput;
-
+        
     public:
         void placeChipUser(int columns, int row);
         void placeChipEnemy(int columns, int row);

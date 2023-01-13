@@ -8,10 +8,12 @@ Screens and logic behind the screens
 *********************************************************************/
 
 class Screen {
+
     private: 
         bool isValidInputFromUserByKeyboard;
         int inputFromUserByKeyboard1Or2;
         int inputFromUserByKeyboard1;
+
     public:
         Screen();
         void printLose();
@@ -25,7 +27,7 @@ class Screen {
         void printEnter1ToGetBackToStartMenu();
         void printInvalidInput();
         void clearScreen();
-        void printLevelDescription(int* columnsRowsWinCoins,int resentLevel);
+        void printLevelDescription(int* columnsRowsWinCoins, int resentLevel);
         void levelDescription();
         void startMenu();
         void endMenuWin();
