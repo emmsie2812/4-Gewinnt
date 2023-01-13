@@ -59,7 +59,7 @@ void Screen::printStartMenu() {
     clearScreen();
     std::cout << "\n"
         "****************************************\n"
-        "*                                      *\n"
+        "*              Start menu              *\n"
         "*                                      *\n"
         "*                                      *\n"
         "*            (:  Hello!  :)            *\n"
@@ -139,7 +139,7 @@ void Screen::printAskForUserInput1Or2Or3() {
 }
 
 void Screen::printEnter1ToGetBackToStartMenu() {
-    std::cout << "Please enter 1 to get back to the start menu";
+    std::cout << "Please enter 1 to get back to the start menu: ";
 }
 
 void Screen::printInvalidInput() {
@@ -200,6 +200,7 @@ Possible actions:
                 break;
             case 2:
                 printStartWithLevel();  //Output
+                sleep(1);
                 startGame.startGame();   //Starts the game 
                 isValidInputFromUserByKeyboard = true;
                 break;
