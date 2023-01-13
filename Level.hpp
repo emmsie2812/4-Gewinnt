@@ -7,12 +7,12 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-class Level{
-    int columnsLinesWinCoins[3];
+class Level {
+    private:
+        int columnsLinesWinCoins[3];
 
     public:
+        Level();
         int* level_1();
         int* level_2();
         int* level_3();

@@ -10,6 +10,7 @@ At position 0 the columns
 At position 1 the rows
 At position 2 the needed number of stones to win
 *********************************************************************/
+Level::Level() {}
 
 int* Level::level_1() {
     columnsLinesWinCoins[0] = 7; //columns

@@ -27,6 +27,6 @@ class Screen {
         void startMenu();
         void endMenuWin();
         void endMenuLose();
-        bool getInputFromUser();
+        int getInputFromUser();
 
 };

@@ -5,8 +5,10 @@
 #include <unistd.h>
 
 Screen::Screen(){
-    //this.gameController = new StartGame();
-    //this.level = new Level();#
+    //StartGame gameController = new StartGame();
+    //gameLogic->field.fieldOutput(columns, row);
+    //gameController->placeChipUser(columns, row);
+    //this.level = new Level();
     //Level level;
 }
 
@@ -158,12 +160,13 @@ void Screen::startMenu() {
     while (!isValidInputFromUserByKeyboard) {
         inputFromUserByKeyboard1Or2 = getInputFromUser();      // Get user input from the keyboard
         clearScreen();
+        Level level;
         switch (inputFromUserByKeyboard1Or2) {            //1 means to begin a new game. The saved level will be overwritten to 1
             case 1:
                 printStartNew();        //Output
                 sleep(1);
                 clearScreen();
-                Level level;
+                
                 level.saveLevel(1);     //overwrite saved level in file
                 isValidInputFromUserByKeyboard = true;
                 startGame.startGame();   //Starts the game 
@@ -235,12 +238,12 @@ Possible actions:
     }
 }
 
-bool Screen::getInputFromUser() {
+int Screen::getInputFromUser() {
 /*********************************************************************
 Gets input from user by keyboard
 *********************************************************************/
 
-    int inputFromUserByKeyboard1Or2;
     std::cin >> inputFromUserByKeyboard1Or2;           // Get user input from the keyboard
+    std::cout << inputFromUserByKeyboard1Or2;
     return inputFromUserByKeyboard1Or2;
 }   
