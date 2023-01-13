@@ -1,5 +1,5 @@
 #include "GameLogic.hpp"
-#include "CppRandom.hpp"
+#include "Random.hpp"
 #include <random>
 
 /*********************************************************************
@@ -71,7 +71,8 @@ Places the chip of the enemy after checking if the game field is empty
 
 
     while (!validInput) {
-        columnRandom = GetRandomNumberBetween(1, row);
+        Random random;
+        columnRandom = random.getRandomNumberBetween(1, row);
         validInput = invalidInputEnemy(columns, row, columnRandom);
     }
 

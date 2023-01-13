@@ -22,11 +22,10 @@ class Screen {
         void printAskForUserInput1Or2();
         void printInvalidInput();
         void clearScreen();
-        void printLevelDescription(int* columnsLinesWinCoins,int resentLevel);
+        void printLevelDescription(int* columnsRowsWinCoins,int resentLevel);
         void levelDescription();
         void startMenu();
         void endMenuWin();
         void endMenuLose();
         int getInputFromUser();
-
 };

@@ -3,16 +3,11 @@
 
 /*********************************************************************
 
-Starts the game
+Generate random number
 
 *********************************************************************/
 
-class StartGame{
+class Random{
     public:
-        StartGame();
-        int* columnsRowsWinCoins;
-        void startGame();
-        bool end_game(int winlose);
-        void jumpToNextLevel();
-
+        int getRandomNumberBetween(int lower, int upper);
 };

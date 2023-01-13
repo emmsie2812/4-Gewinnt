@@ -1,6 +1,6 @@
 #include "Level.hpp"
-//#include "CppRandom.hpp"
-//#include <random>
+#include "Random.hpp"
+#include <random>
 #include <iostream>
 #include <fstream>
 
@@ -14,61 +14,61 @@ At position 2 the needed number of stones to win
 Level::Level() {}
 
 int* Level::level_1() {
-    columnsLinesWinCoins[0] = 7; //columns
-    columnsLinesWinCoins[1] = 7; //rows
-    columnsLinesWinCoins[2] = 4; //win_coins 
-   return columnsLinesWinCoins;
+    columnsRowsWinCoins[0] = 7; //columns
+    columnsRowsWinCoins[1] = 7; //rows
+    columnsRowsWinCoins[2] = 4; //win_coins 
+   return columnsRowsWinCoins;
 }
 
 int* Level::level_2() {
-    columnsLinesWinCoins[0] = 6; //columns
-    columnsLinesWinCoins[1] = 6; //rows
-    columnsLinesWinCoins[2] = 4; //win_coins
-   return columnsLinesWinCoins;
+    columnsRowsWinCoins[0] = 6; //columns
+    columnsRowsWinCoins[1] = 6; //rows
+    columnsRowsWinCoins[2] = 4; //win_coins
+   return columnsRowsWinCoins;
 }
 
 int* Level::level_3() {
-    columnsLinesWinCoins[0] = 6; //columns
-    columnsLinesWinCoins[1] = 6; //rows
-    columnsLinesWinCoins[2] = 4; //win_coins
-   return columnsLinesWinCoins;
+    columnsRowsWinCoins[0] = 6; //columns
+    columnsRowsWinCoins[1] = 6; //rows
+    columnsRowsWinCoins[2] = 4; //win_coins
+   return columnsRowsWinCoins;
 }
 
 int* Level::level_4() {
-    columnsLinesWinCoins[0] = 4; //columns
-    columnsLinesWinCoins[1] = 6; //rows
-    columnsLinesWinCoins[2] = 4; //win_coins
-   return columnsLinesWinCoins;
+    columnsRowsWinCoins[0] = 4; //columns
+    columnsRowsWinCoins[1] = 6; //rows
+    columnsRowsWinCoins[2] = 4; //win_coins
+   return columnsRowsWinCoins;
 }
 
 int* Level::level_5() {
-    columnsLinesWinCoins[0] = 5; //columns
-    columnsLinesWinCoins[1] = 5; //rows
-    columnsLinesWinCoins[2] = 4; //win_coins
-   return columnsLinesWinCoins;
+    columnsRowsWinCoins[0] = 5; //columns
+    columnsRowsWinCoins[1] = 5; //rows
+    columnsRowsWinCoins[2] = 4; //win_coins
+   return columnsRowsWinCoins;
 }
 
 int* Level::level_6() {
-    columnsLinesWinCoins[0] = 4; //columns
-    columnsLinesWinCoins[1] = 4; //rows
-    columnsLinesWinCoins[2] = 4; //win_coins
-   return columnsLinesWinCoins;
+    columnsRowsWinCoins[0] = 4; //columns
+    columnsRowsWinCoins[1] = 4; //rows
+    columnsRowsWinCoins[2] = 4; //win_coins
+   return columnsRowsWinCoins;
 }
 
-int* Level::level_7() {                                                                  //To do @Emma warum tut die Random net?????
-   /* int field_column_random = GetRandomNumberBetween(5,10);
-    int field_line_random = GetRandomNumberBetween(5,10);
-    int field_win_coins = GetRandomNumberBetween(4,6);
+int* Level::level_7() {    
+    Random random;
+    int field_column_random = random.getRandomNumberBetween(5,10);
+    int field_line_random = random.getRandomNumberBetween(5,10);
+    int field_win_coins = random.getRandomNumberBetween(4,6);
 
-    columnsLinesWinCoins[0] = field_column_random; //columns
-    columnsLinesWinCoins[1] = field_line_random; //rows
-    columnsLinesWinCoins[2] = field_win_coins; //win_coins
-    */
-    columnsLinesWinCoins[0] = 8; //columns
-    columnsLinesWinCoins[1] = 8; //rows
-    columnsLinesWinCoins[2] = 5; //win_coins*/
-    return columnsLinesWinCoins;
-    //printf("Hier in level 7");
+    columnsRowsWinCoins[0] = field_column_random; //columns
+    columnsRowsWinCoins[1] = field_line_random; //rows
+    columnsRowsWinCoins[2] = field_win_coins; //win_coins
+    /*
+    columnsRowsWinCoins[0] = 8; //columns
+    columnsRowsWinCoins[1] = 8; //rows
+    columnsRowsWinCoins[2] = 5; //win_coins*/
+    return columnsRowsWinCoins;
 }
 
 int Level::getLevel() {
@@ -124,10 +124,10 @@ returns the level setup (columns, rows, wincoins) depending on the level stored 
                     return level_7();
     }
     //default if somethings wrong. Game wouldn't stop
-    columnsLinesWinCoins[0] = 4; //columns
-    columnsLinesWinCoins[1] = 4; //rows
-    columnsLinesWinCoins[2] = 4; //win_coins
-    return columnsLinesWinCoins; //Default
+    columnsRowsWinCoins[0] = 4; //columns
+    columnsRowsWinCoins[1] = 4; //rows
+    columnsRowsWinCoins[2] = 4; //win_coins
+    return columnsRowsWinCoins; //Default
 }
 
 void Level::incrementLevelInFile() {
@@ -139,4 +139,3 @@ increments the level and stores it in the file
     newLevel = getLevel() + 1;
     saveLevel(newLevel);
 }
-

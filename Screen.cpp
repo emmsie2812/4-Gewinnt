@@ -6,6 +6,7 @@
 
 Screen::Screen() {}
 Level level;
+StartGame startGame;
 
 /*********************************************************************
 From here pure output area by cout
@@ -120,8 +121,8 @@ void Screen::clearScreen() {
     std::cout << "\x1B[2J\x1B[H";
 }
 
-void Screen::printLevelDescription(int* columnsLinesWinCoins, int recentLevel) {
-    std::cout << "You are in level " << recentLevel <<".\nHere you have a " << columnsLinesWinCoins[0] << "x" << columnsLinesWinCoins[1] << " field \nand you need " << columnsLinesWinCoins[2] << " of your stones \nin a horizontal, vertical or diagonal line to win.\nGood luck!\n\n";
+void Screen::printLevelDescription(int* columnsRowsWinCoins, int currentLevel) {
+    std::cout << "You are in level " << currentLevel <<".\nHere you have a " << columnsRowsWinCoins[0] << "x" << columnsRowsWinCoins[1] << " field \nand you need " << columnsRowsWinCoins[2] << " of your stones \nin a horizontal, vertical or diagonal line to win.\nGood luck!\n\n";
 }
 
 /*********************************************************************
@@ -132,11 +133,15 @@ void Screen::levelDescription() {
 /*********************************************************************
 Collects the level settings to be printed for the user
 *********************************************************************/
-    int recentLevel;
-    recentLevel = level.getLevel();
-    int* columnsLinesWinCoins;
-    columnsLinesWinCoins = level.levelSetup();
-    printLevelDescription(columnsLinesWinCoins, recentLevel);     //Output
+    int currentLevel;
+    currentLevel = level.getLevel();
+    int* scolumnsRowsWinCoins;
+    if (currentLevel < 7){
+        scolumnsRowsWinCoins = level.levelSetup();
+    } else {
+        scolumnsRowsWinCoins = startGame.columnsRowsWinCoins;
+    }
+    printLevelDescription(scolumnsRowsWinCoins, currentLevel);     //Output
 }
 
 void Screen::startMenu() {    
@@ -149,7 +154,6 @@ Possible actions:
 
     printStartMenu();                   //Output
     printAskForUserInput1Or2();         //Output
-    StartGame startGame;
     isValidInputFromUserByKeyboard = false;
     while (!isValidInputFromUserByKeyboard) {
         inputFromUserByKeyboard1Or2 = getInputFromUser();      // Get user input from the keyboard
@@ -200,7 +204,6 @@ Possible actions:
     level.incrementLevelInFile();
 /********************************************************************/
     if (inputFromUserByKeyboard1Or2 == 1) {
-        StartGame startGame;
         startGame.startGame();                                   //Starts the game
     }
 }
@@ -225,7 +228,6 @@ Possible actions:
     }
 
     if (inputFromUserByKeyboard1Or2 == 1) {                      //Play Level again
-        StartGame startGame;
         startGame.startGame();                                    //Starts the game
     }
 }

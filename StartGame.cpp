@@ -19,11 +19,10 @@ Start game
 *********************************************************************/
 
     Level level;
-    int* columnsLinesWinCoins;
-    columnsLinesWinCoins = level.levelSetup();      //Get columns, rows and wincoins
-    int columns = columnsLinesWinCoins[0];
-    int row = columnsLinesWinCoins[1];
-    int wincoins = columnsLinesWinCoins[2];
+    columnsRowsWinCoins = level.levelSetup();      //Get columns, rows and wincoins
+    int columns = columnsRowsWinCoins[0];
+    int row = columnsRowsWinCoins[1];
+    int wincoins = columnsRowsWinCoins[2];
 
     Field *gameField = new Field();
     GameLogic *gameLogic = new GameLogic(*gameField);
