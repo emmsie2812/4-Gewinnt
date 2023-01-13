@@ -214,10 +214,9 @@ checks the input of the enemy (computer)
 
     if (WinUserOrEnemyHorizontal == 1 || WinUserOrEnemyVertical == 1 ||  WinUserOrEnemyDiagonal == 1) {
         win = 1;
+
     }else if (WinUserOrEnemyHorizontal == 2 || WinUserOrEnemyVertical == 2 ||  WinUserOrEnemyDiagonal == 2) {
         win = 2;
-    }else {
-        win = 3;
     }
     return win;
 }
