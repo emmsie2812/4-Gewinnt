@@ -46,13 +46,13 @@ To output the game field by cout
     }
 }
 
-void Field::fieldEmpty() {   //@Emma ungenutzt. Kann man löschen????
+void Field::fieldEmpty(int columns, int row) {
 /*********************************************************************
 empty game field
 *********************************************************************/
 
-   for (unsigned int i = 0; i < 5; ++i) {
-        for (unsigned int j = 0; j < 5; ++j) {
+   for (unsigned int i = 0; i < row; ++i) {
+        for (unsigned int j = 0; j < columns; ++j) {
             gameField[j][i] = ' ';
         }
     }

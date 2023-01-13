@@ -10,9 +10,7 @@
 Start and end the game
 *********************************************************************/
 
-StartGame::StartGame() {
-    //Screen screen;
-}
+StartGame::StartGame() {}
 Screen screen;
 
 void StartGame::startGame() {
@@ -30,6 +28,8 @@ Start game
     Field *gameField = new Field();
     GameLogic *gameLogic = new GameLogic(*gameField);
     bool time = true;
+
+    //gameLogic->field.fieldEmpty(columns, row);
 
     while (time) {
         screen.clearScreen();
