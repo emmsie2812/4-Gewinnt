@@ -212,11 +212,9 @@ checks the input of the enemy (computer)
     int WinUserOrEnemyDiagonal = diagonalWinLose(columns, row, winCoins);
 
     if (WinUserOrEnemyHorizontal == 1 || WinUserOrEnemyVertical == 1 ||  WinUserOrEnemyDiagonal == 1) {
-        std::cout<<"Bin hier rein gerutscht";
         win = 1;
 
     }else if (WinUserOrEnemyHorizontal == 2 || WinUserOrEnemyVertical == 2 ||  WinUserOrEnemyDiagonal == 2) {
-        std::cout<<"2";
         win = 2;
     }
     return win;
