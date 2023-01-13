@@ -4,11 +4,8 @@
 #include <iostream>
 #include <unistd.h>
 
-Screen::Screen(){
-    //this.gameController = new StartGame();
-    //this.level = new Level();#
-    //Level level;
-}
+Screen::Screen() {}
+Level level;
 
 /*********************************************************************
 From here pure output area by cout
@@ -135,7 +132,6 @@ void Screen::levelDescription() {
 /*********************************************************************
 Collects the level settings to be printed for the user
 *********************************************************************/
-    Level level;
     int recentLevel;
     recentLevel = level.getLevel();
     int* columnsLinesWinCoins;
@@ -144,12 +140,12 @@ Collects the level settings to be printed for the user
 }
 
 void Screen::startMenu() {    
-    /*********************************************************************
-    Start menu at the beginning of the game
-    Possible actions:
-        1 start new game in level 1
-        2 start with the stored level in file
-    *********************************************************************/
+/*********************************************************************
+Start menu at the beginning of the game
+Possible actions:
+    1 start new game in level 1
+    2 start with the stored level in file
+*********************************************************************/
 
     printStartMenu();                   //Output
     printAskForUserInput1Or2();         //Output
@@ -163,7 +159,7 @@ void Screen::startMenu() {
                 printStartNew();        //Output
                 sleep(1);
                 clearScreen();
-                Level level;
+                
                 level.saveLevel(1);     //overwrite saved level in file
                 isValidInputFromUserByKeyboard = true;
                 startGame.startGame();   //Starts the game 
@@ -201,7 +197,6 @@ Possible actions:
 
 /*********************************************************************
     Is always executed, because you don't want to play the level again the next time you start the game, but you want to start in the new level*/
-    Level level;
     level.incrementLevelInFile();
 /********************************************************************/
     if (inputFromUserByKeyboard1Or2 == 1) {
@@ -235,12 +230,12 @@ Possible actions:
     }
 }
 
-bool Screen::getInputFromUser() {
+int Screen::getInputFromUser() {
 /*********************************************************************
 Gets input from user by keyboard
 *********************************************************************/
 
-    int inputFromUserByKeyboard1Or2;
     std::cin >> inputFromUserByKeyboard1Or2;           // Get user input from the keyboard
+    std::cout << inputFromUserByKeyboard1Or2;
     return inputFromUserByKeyboard1Or2;
 }   

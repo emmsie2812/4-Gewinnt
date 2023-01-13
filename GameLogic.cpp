@@ -133,7 +133,7 @@ Checking for a vertical winning or losing row
             if (count1_Me == winCoins) {      //win user
                 return 1;
             }
-            if (count2_Enemy== winCoins) {    //win enemy
+            if (count2_Enemy == winCoins) {    //win enemy
                 return 2;
             }
         }
@@ -201,12 +201,9 @@ Checking for a diagonal winning or losing row
 }
 
 int GameLogic::winLose(int columns, int row, int winCoins) {
-    /*********************************************************************
-checks the input of the Enemy(Computer) 
+/*********************************************************************
+checks the input of the enemy (computer) 
 *********************************************************************/
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     int win = 0;
 

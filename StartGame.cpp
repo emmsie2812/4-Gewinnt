@@ -10,6 +10,7 @@
 Start and end the game
 *********************************************************************/
 
+StartGame::StartGame() {}
 Screen screen;
 
 void StartGame::startGame() {
@@ -28,6 +29,8 @@ Start game
     GameLogic *gameLogic = new GameLogic(*gameField);
     bool time = true;
 
+    //gameLogic->field.fieldEmpty(columns, row);
+
     while (time) {
         screen.clearScreen();
         gameLogic->field.fieldOutput(columns, row);                 //Users turn
@@ -40,9 +43,7 @@ Start game
         if (end_game(winlose)) {
             break;
         }
-        std::cout<<"Enemy Turn: \n";                                //Enemys turn
-        sleep(1);
-        gameLogic->placeChipEnemy(columns, row);
+        gameLogic->placeChipEnemy(columns, row);                    //Enemys turn
 
         winlose = gameLogic->winLose(columns, row, wincoins);       //Win and lose check
         if (end_game(winlose)) { 
