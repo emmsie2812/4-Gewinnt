@@ -214,12 +214,13 @@ checks the input of the Enemy(Computer)
     int WinUserOrEnemyVertical = verticalWinLose(columns, row, winCoins);
     int WinUserOrEnemyDiagonal = diagonalWinLose(columns, row, winCoins);
 
-    if ((WinUserOrEnemyHorizontal || WinUserOrEnemyVertical ||  WinUserOrEnemyDiagonal) == 1) {
+    if (WinUserOrEnemyHorizontal == 1 || WinUserOrEnemyVertical == 1 ||  WinUserOrEnemyDiagonal == 1) {
+        std::cout<<"Bin hier rein gerutscht";
         win = 1;
-    }else if ((WinUserOrEnemyHorizontal || WinUserOrEnemyVertical ||  WinUserOrEnemyDiagonal) == 2) {
+
+    }else if (WinUserOrEnemyHorizontal == 2 || WinUserOrEnemyVertical == 2 ||  WinUserOrEnemyDiagonal == 2) {
+        std::cout<<"2";
         win = 2;
-    }else {
-        win = 3;
     }
     return win;
 }
