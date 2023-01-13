@@ -5,7 +5,13 @@
 #define RESET "\033[0m"
 #define WHITE "\033[37m" /* White */
 
-Field::Field(){}
+Field::Field(){
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            gameField[i][j] = '\0';
+        }
+    }
+}
 
 void Field::fieldOutput(int columns, int row) { 
 /*********************************************************************
