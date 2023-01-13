@@ -67,6 +67,8 @@ void Screen::printStartMenu() {
         "*          Then please press 1         *\n"
         "* Or do you want to reload your score? *\n"
         "*          Then please press 2         *\n"
+        "*       If you need a game guide       *\n"
+        "*          Then please press 3         *\n"
         "*                                      *\n"
         "*                                      *\n"
         "*                                      *\n"
@@ -108,8 +110,36 @@ void Screen::printStartWithLevel() {
         "\n";        
 }
 
+void Screen::printHelpMenu() {
+    clearScreen();
+    std::cout << "\n"
+        "****************************************\n"
+        "*               Help menu              *\n"
+        "*                                      *\n"
+        "*                                      *\n"
+        "*   In the game 4 wins the goal is to  *\n"
+        "*line up a row horizontally, vertically*\n"
+        "*   or diagonally of your own stones.  *\n"
+        "* To do this, you only have to type in *\n"
+        "*        the column as a number.       *\n"
+        "*     The stone falls to the lowest    *\n"
+        "*      free place in this column.      *\n"
+        "*                                      *\n"
+        "*                                      *\n"
+        "****************************************\n"
+        "\n";        
+}
+
 void Screen::printAskForUserInput1Or2() {
     std::cout << "Please enter 1 or 2! ";
+}
+
+void Screen::printAskForUserInput1Or2Or3() {
+    std::cout << "Please enter 1, 2 or 3! ";
+}
+
+void Screen::printEnter1ToGetBackToStartMenu() {
+    std::cout << "Please enter 1 to get back to the start menu";
 }
 
 void Screen::printInvalidInput() {
@@ -153,7 +183,7 @@ Possible actions:
 *********************************************************************/
 
     printStartMenu();                   //Output
-    printAskForUserInput1Or2();         //Output
+    printAskForUserInput1Or2Or3();         //Output
     isValidInputFromUserByKeyboard = false;
     while (!isValidInputFromUserByKeyboard) {
         inputFromUserByKeyboard1Or2 = getInputFromUser();      // Get user input from the keyboard
@@ -171,6 +201,10 @@ Possible actions:
             case 2:
                 printStartWithLevel();  //Output
                 startGame.startGame();   //Starts the game 
+                isValidInputFromUserByKeyboard = true;
+                break;
+            case 3:
+                helpMenu();             //open Help menu
                 isValidInputFromUserByKeyboard = true;
                 break;
             default:
@@ -241,3 +275,16 @@ Gets input from user by keyboard
     std::cout << inputFromUserByKeyboard1Or2;
     return inputFromUserByKeyboard1Or2;
 }   
+
+void Screen::helpMenu() {
+    printHelpMenu();
+    printEnter1ToGetBackToStartMenu();
+    isValidInputFromUserByKeyboard = false;
+    while (!isValidInputFromUserByKeyboard) {
+        inputFromUserByKeyboard1 = getInputFromUser();       // Get user input from the keyboard
+        if (inputFromUserByKeyboard1 == 1) {
+            isValidInputFromUserByKeyboard = true;
+        }
+    }
+    startMenu();
+}

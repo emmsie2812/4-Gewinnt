@@ -33,7 +33,7 @@ Start game
     while (time) {
         screen.clearScreen();
         gameLogic->field.fieldOutput(columns, row);                 //Users turn
-        std::cout<<"Your Turn:";
+        std::cout<<"Your turn, type in a number between 1 and " << columns;
         gameLogic->placeChipUser(columns, row);
 
         gameLogic->field.fieldOutput(columns, row);                 

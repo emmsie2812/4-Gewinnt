@@ -11,7 +11,7 @@ class Screen {
     private: 
         bool isValidInputFromUserByKeyboard;
         int inputFromUserByKeyboard1Or2;
-        //gameController* StartEnd; 
+        int inputFromUserByKeyboard1;
     public:
         Screen();
         void printLose();
@@ -19,7 +19,10 @@ class Screen {
         void printStartMenu();
         void printStartNew();
         void printStartWithLevel();
+        void printHelpMenu();
         void printAskForUserInput1Or2();
+        void printAskForUserInput1Or2Or3();
+        void printEnter1ToGetBackToStartMenu();
         void printInvalidInput();
         void clearScreen();
         void printLevelDescription(int* columnsRowsWinCoins,int resentLevel);
@@ -28,4 +31,5 @@ class Screen {
         void endMenuWin();
         void endMenuLose();
         int getInputFromUser();
+        void helpMenu();
 };
