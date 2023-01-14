@@ -39,6 +39,21 @@ checks the input of the Enemy(Computer)
     return true;
 }
 
+bool GameLogic::fullGamefield(int columns, int row) {
+/*********************************************************************
+checks for full gamefield
+*********************************************************************/
+    bool fullGamefield = true; 
+
+    for(int j = 0; j<columns; j++){
+        if(field.gameField[j][row-1] != 'O' && field.gameField[j][row-1] != 'X'){
+            fullGamefield = false;
+        }
+    }
+
+    return fullGamefield;
+}
+
 void GameLogic::placeChipUser(int columns, int row) {
 /*********************************************************************
 Places the chip of the user after checking if the game field is empty

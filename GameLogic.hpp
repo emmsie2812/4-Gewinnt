@@ -19,6 +19,7 @@ class GameLogic {
         void placeChipEnemy(int columns, int row);
         bool invalidInputUser(int columns, int row, int userInput);
         bool invalidInputEnemy(int columns, int row, int userInput);
+        bool fullGamefield(int columns, int row);
         int winLose(int columns, int row, int winCoins);
         int diagonalWinLose(int columns, int row, int winCoins);
         int verticalWinLose(int columns, int row, int winCoins);

@@ -31,6 +31,9 @@ Start game
     bool time = true;
 
     while (time) {
+        if(gameLogic->fullGamefield(columns, row)){
+            gameLogic->field.emptyField();
+        } 
         screen.clearScreen();
         gameLogic->field.fieldOutput(columns, row);                //Users turn
         std::cout << "Your turn, type in a number between 1 and " << columns << ": ";
@@ -42,12 +45,16 @@ Start game
         if (endGame(winlose)) {
             break;
         }
+        if(gameLogic->fullGamefield(columns, row)){
+            gameLogic->field.emptyField();
+        } 
+
         gameLogic->placeChipEnemy(columns, row);                   //Enemys turn
         sleep(1);
         winlose = gameLogic->winLose(columns, row, wincoins);      //Win and lose check
         if (endGame(winlose)) { 
             break;
-        }   
+        }
     }
 }
 
