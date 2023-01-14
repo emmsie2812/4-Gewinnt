@@ -59,3 +59,11 @@ To output the game field by cout
         std::cout << "\n";
     }
 }
+
+void Field::emptyField(){
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            gameField[i][j] = '\0';
+        }
+    }
+}
