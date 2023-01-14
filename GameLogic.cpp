@@ -49,7 +49,7 @@ Places the chip of the user after checking if the game field is empty
 
     while (!validInput) {
         std::cin >> userInput;
-        validInput = invalidInputUser(columns,row, userInput);
+        validInput = invalidInputUser(columns, row, userInput);
     }
 
     for (int i = 0; i < row; i++) {                              //Places the chip of the user
@@ -104,10 +104,10 @@ Checking for a horizontal winning or losing row
                 count2_Enemy++;
                 count1_Me = 0;
             }
-            if (count1_Me == winCoins) {          //Win user
+            if (count1_Me == winCoins) {        //Win user
                 return 1;
             }
-            if (count2_Enemy==winCoins) {        //Win enemy
+            if (count2_Enemy==winCoins) {       //Win enemy
                 return 2;
             }
         }
@@ -144,7 +144,7 @@ Checking for a vertical winning or losing row
     return 0;
 }
 
-int GameLogic:: diagonalWinLose(int columns, int row,int winCoins) {
+int GameLogic:: diagonalWinLose(int columns, int row, int winCoins) {
 /*********************************************************************
 Checking for a diagonal winning or losing row
 *********************************************************************/

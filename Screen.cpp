@@ -197,15 +197,17 @@ Possible actions:
     isValidInputFromUserByKeyboard = false;
     while (!isValidInputFromUserByKeyboard) {
         inputFromUserByKeyboard1Or2 = getInputFromUser();      // Get user input from the keyboard
-        if (!inputFromUserByKeyboard1Or2){
+
+        if (!inputFromUserByKeyboard1Or2) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             printInvalidInput();
             continue;
         }
+        
         clearScreen();
-        switch (inputFromUserByKeyboard1Or2) {                 //1 means to begin a new game. The saved level will be overwritten to 1
-            case 1:
+        switch (inputFromUserByKeyboard1Or2) {                 
+            case 1:                                            //1 means to begin a new game. The saved level will be overwritten to 1
                 printStartNew();                               //Output
                 sleep(1);
                 clearScreen();
@@ -245,6 +247,14 @@ Possible actions:
         printWin();                                            //Output
         printAskForUserInput1Or2();                            //Output
         inputFromUserByKeyboard1Or2 = getInputFromUser();      // Get user input from the keyboard
+        
+        if (!inputFromUserByKeyboard1Or2) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            printInvalidInput();
+            continue;
+        }
+
         if (inputFromUserByKeyboard1Or2 == 1 || inputFromUserByKeyboard1Or2 == 2) {
             isValidInputFromUserByKeyboard = true;
         }
@@ -274,6 +284,14 @@ Possible actions:
         printLose();                                            //Output
         printAskForUserInput1Or2();                             //Output
         inputFromUserByKeyboard1Or2 = getInputFromUser();       // Get user input from the keyboard
+
+        if (!inputFromUserByKeyboard1Or2) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            printInvalidInput();
+            continue;
+        }
+
         if (inputFromUserByKeyboard1Or2 == 1 || inputFromUserByKeyboard1Or2 == 2) {
             isValidInputFromUserByKeyboard = true;
         }
@@ -300,6 +318,14 @@ void Screen::helpMenu() {
     isValidInputFromUserByKeyboard = false;
     while (!isValidInputFromUserByKeyboard) {
         inputFromUserByKeyboard1 = getInputFromUser();          // Get user input from the keyboard
+
+        if (!inputFromUserByKeyboard1Or2) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            printInvalidInput();
+            continue;
+        }
+
         if (inputFromUserByKeyboard1 == 1) {
             isValidInputFromUserByKeyboard = true;
         }

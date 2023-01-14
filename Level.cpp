@@ -60,12 +60,12 @@ int* Level::level_6() {
 int* Level::level_7() {    
     Random random;
     int field_column_random = random.getRandomNumberBetween(5,10);
-    int field_line_random = random.getRandomNumberBetween(5,10);
+    int field_row_random = random.getRandomNumberBetween(5,10);
     int field_win_coins = random.getRandomNumberBetween(4,6);
 
-    columnsRowsWinCoins[0] = field_column_random; //columns
-    columnsRowsWinCoins[1] = field_line_random; //rows
-    columnsRowsWinCoins[2] = field_win_coins; //win_coins
+    columnsRowsWinCoins[0] = field_column_random;   //columns
+    columnsRowsWinCoins[1] = field_row_random;      //rows
+    columnsRowsWinCoins[2] = field_win_coins;       //win_coins
     return columnsRowsWinCoins;
 }
 

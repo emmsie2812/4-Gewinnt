@@ -13,7 +13,7 @@ Das Spiel starten mit: ./4gewinnt
 1.    Im Startmenü zwischen folgenden Optionen auswählen: 
       * 1. Spiel in Level 1 starten 
       * 2. Gespeichertes Level aufrufen und starten
-      * 3. Hilfe 
+      * 3. Öffne die Hilfe 
 2.    Spiel wird gestartet (Bei Auswahl 1 und 2):
       'O' Benutzer; 'X' Computer/Gegenspieler
 3.    Durch die Eingabe über die Tastatur kann entschieden werden, in welche Spalte der Stein gelegt wird
