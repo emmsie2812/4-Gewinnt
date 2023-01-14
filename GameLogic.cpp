@@ -22,7 +22,7 @@ checks the input of the player
     if (userInput > columns || userInput == 0 || field.gameField[userInput-1][row-1] == 'O'|| field.gameField[userInput-1][row-1] == 'X'|| !userInput) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << userInput << " is a Invalid Input, Please Try Again: ";
+        std::cout << "Invalid Input, Please Try Again: ";
         return false;
     } 
     return true;

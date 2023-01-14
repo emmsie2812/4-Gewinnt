@@ -43,7 +43,7 @@ Start game
             break;
         }
         gameLogic->placeChipEnemy(columns, row);                   //Enemys turn
-
+        sleep(1);
         winlose = gameLogic->winLose(columns, row, wincoins);      //Win and lose check
         if (endGame(winlose)) { 
             break;

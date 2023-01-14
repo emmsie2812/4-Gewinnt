@@ -151,7 +151,7 @@ void Screen::printEnter1ToGetBackToStartMenu() {
 
 void Screen::printInvalidInput() {
     printStartMenu();
-    std::cout << "\nPlease try again 1 or 2! ";
+    std::cout << "\nPlease try again 1, 2 or 3! ";
 }
 
 void Screen::clearScreen() {
@@ -197,6 +197,12 @@ Possible actions:
     isValidInputFromUserByKeyboard = false;
     while (!isValidInputFromUserByKeyboard) {
         inputFromUserByKeyboard1Or2 = getInputFromUser();      // Get user input from the keyboard
+        if (!inputFromUserByKeyboard1Or2){
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            printInvalidInput();
+            continue;
+        }
         clearScreen();
         switch (inputFromUserByKeyboard1Or2) {                 //1 means to begin a new game. The saved level will be overwritten to 1
             case 1:

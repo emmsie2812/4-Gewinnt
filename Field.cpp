@@ -21,32 +21,40 @@ To output the game field by cout
     Screen screen;
     screen.levelDescription();              //Output
     for (int fieldLabel = 1; fieldLabel <= columns; fieldLabel++) {
-        std::cout << "|  " << fieldLabel << "  ";
+        std::cout << "| " << fieldLabel << " ";
     }
     std::cout << "|\n";
     int maxFieldSeparation = columns * 4;
     for (int fieldSeparation = 1; fieldSeparation <= maxFieldSeparation; fieldSeparation = fieldSeparation + 4) {
-        std::cout << "______";
+        std::cout << "____";
     }
     std::cout << "\n";
     for (int i = row-1; i >= 0; i--) {      //i rows , j columns
-        std::cout << "|   ";
+        std::cout << "| ";
 
         for (int j = 0; j < columns; j++) {
             std::string color = WHITE;
+            bool spotEmpty = true;
             if (gameField[j][i] == 'O') {
                 color = YELLOW;
+                spotEmpty = false;
             }
             
             if (gameField[j][i] == 'X') {
                 color = RED;
+                spotEmpty = false;
             }
-            std::cout << color << gameField[j][i] << RESET "  |   ";
+            if(spotEmpty){
+                std::cout << "  | ";
+            } else {
+                std::cout << color << gameField[j][i] << RESET " | ";
+            }
+           
         }
 
         std::cout << "\b\n"; 
         for (int fieldSeparation = 1; fieldSeparation <= maxFieldSeparation; fieldSeparation = fieldSeparation + 4) {
-                std::cout << "______";
+                std::cout << "____";
             }
         std::cout << "\n";
     }
